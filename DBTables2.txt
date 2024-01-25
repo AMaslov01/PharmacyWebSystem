@@ -1,0 +1,109 @@
+Invoice:
+	InvoiceID
+	SupplierID
+
+	referenceNumber
+	dateOfInvoice
+	amountOfInvoice
+
+Supplier:
+	SupplierID
+
+	supplierName
+	address
+	eircode
+	email
+	website
+	telNumber
+	websiteAddress
+	ammountOwed
+
+Stock:
+	StockID
+	SupplierID
+
+	description	
+	costPrice
+	retailPrice
+	reorderLevel
+	reorderQuantity
+	supplierStockCode
+	quantityInStock
+	(supplierName)
+
+Order:
+	OrderID (orderNumber)
+	SupplierID
+
+	orderDate
+	(supplierName)
+	(supplierAddress)	
+
+Prescription:
+	PrescriptionID
+	DoctorID
+	CustomerID
+
+	prescribingDoctor
+	dateOfPrescription
+
+Drug:
+	DrugID
+	SupplierID
+
+	brandName
+	genericName
+	drugForm
+	drugStrength
+	usageInstructions
+	sideEffects
+	costPrice
+	retailPrice
+	quantityInStock
+	reorderLevel
+	reorderQuantity
+	(supplierName)
+
+Customer:
+	CustomerID
+
+	customerSurname
+	customerName
+	address
+	eircode
+	dateOfBirth
+	telephoneNumber
+
+Doctor:
+	DoctorID
+
+	doctorSurname
+	doctorFirstname
+	surgeryAddress
+	surgeryEircode
+	surgeryTelephoneNumber
+	mobileTelephoneNumber
+	homeAddress
+	homeEircode
+	homeTelephoneNumber
+
+Drug_to_Prescription:
+	DrugID
+	PrescriptionID
+
+	drugName
+	sizeOfDosage
+	frequencyOfDosage
+	lenghtOfDosage
+	instructions
+
+Order_to_Drug:
+	OrderID
+	DrugID
+	
+	orderQuantity
+	price
+	drugDescription
+	supplierDrugCode
+	dateOfOrder
+	dateOfDelivery
