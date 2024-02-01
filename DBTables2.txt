@@ -1,13 +1,13 @@
 Invoice:
-	InvoiceID
-	SupplierID
+	invoiceID
+	supplierID
 
 	referenceNumber
 	dateOfInvoice
 	amountOfInvoice
 
 Supplier:
-	SupplierID
+	supplierID
 
 	supplierName
 	address
@@ -15,11 +15,12 @@ Supplier:
 	email
 	website
 	telNumber
+	websiteAddress
 	ammountOwed
 
 Stock:
-	StockID
-	SupplierID
+	stockID
+	supplierID
 
 	description	
 	costPrice
@@ -31,24 +32,24 @@ Stock:
 	(supplierName)
 
 Order:
-	OrderID (orderNumber)
-	SupplierID
+	orderID (orderNumber)
+	supplierID
 
 	orderDate
 	(supplierName)
 	(supplierAddress)	
 
 Prescription:
-	PrescriptionID
-	DoctorID
-	CustomerID
+	prescriptionID
+	doctorID
+	customerID
 
 	prescribingDoctor
 	dateOfPrescription
 
 Drug:
-	DrugID
-	SupplierID
+	drugID
+	supplierID
 
 	brandName
 	genericName
@@ -64,7 +65,7 @@ Drug:
 	(supplierName)
 
 Customer:
-	CustomerID
+	customerID
 
 	customerSurname
 	customerName
@@ -74,7 +75,7 @@ Customer:
 	telephoneNumber
 
 Doctor:
-	DoctorID
+	doctorID
 
 	doctorSurname
 	doctorFirstname
@@ -87,8 +88,8 @@ Doctor:
 	homeTelephoneNumber
 
 Drug_to_Prescription:
-	DrugID
-	PrescriptionID
+	drugID
+	prescriptionID
 
 	drugName
 	sizeOfDosage
@@ -97,8 +98,8 @@ Drug_to_Prescription:
 	instructions
 
 Order_to_Drug:
-	OrderID
-	DrugID
+	orderID
+	drugID
 	
 	orderQuantity
 	price
@@ -106,3 +107,22 @@ Order_to_Drug:
 	supplierDrugCode
 	dateOfOrder
 	dateOfDelivery
+
+Payment:
+	paymentID
+	supplierID
+	invoiceID
+
+	dateOfPayment
+
+CounterSale:
+	counterSaleID
+	
+	dateOfSale
+
+Stock_to_CounterSale:
+	stockID
+	counterSaleID
+
+	totalPrice
+	quantity
