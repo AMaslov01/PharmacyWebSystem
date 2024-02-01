@@ -15,7 +15,6 @@ Supplier:
 	email
 	website
 	telNumber
-	websiteAddress
 	ammountOwed
 
 Stock:
