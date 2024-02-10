@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="menu.css">
+        <title>Menu</title>
+    </head>
+    <body>
+        <div class="header">
+
+            <div class="logo">
+                <img src="logo6.png" width="110px" height="110px" alt="logo">
+            </div>
+
+            <div class="menu_button" id="menu_button">
+                <p style="user-select: none; position: fixed; margin: 0; margin-left: 8px; color: white; font-size: 64px; font-weight: 700;">MENU</p>
+            </div>
+
+            <div class="links" id="links">
+                <div class="link" style="top: 5px; left: 0;">
+                    <a style="margin: 0; color: white; font-size: 30px;">COUNTER SALES</a>
+                </div>
+
+                <div class="link" style="top: 50px; left: 0;">
+                    <a style="margin: 0; color: white; font-size: 30px;">DISPENSE DRUGS</a>
+                </div>
+
+                <div class="link" style="top: 0; left: 350px">
+                    <a style="margin: 0; color: white; font-size: 30px;">STOCK CONTROL MENU</a>
+                </div>
+
+                <div class="link" style="top: 50px; left: 350px">
+                    <a style="margin: 0; color: white; font-size: 30px;">SUPPLIER ACCOUNTS MENU</a>
+                </div>
+
+                <div class="link" style="top: 0; left: 820px">
+                    <a href="fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
+                </div>
+
+                <div class="link" style="top: 50px; left: 820px">
+                    <a style="margin: 0; color: white; font-size: 30px;">REPORTS MENU</a>
+                </div>
+            </div>
+
+            <div class="logout">
+                <a href="logIn.html"><img src="logout.png" width="110px" height="110px" alt="logo"></a>
+            </div>
+
+        </div>
+
+
+        <script>
+            document.getElementById('menu_button').addEventListener('click', function() {
+                var links = document.querySelector('.links');
+                if (links.style.display === 'none') {
+                    links.style.display = 'block'; // Show the links
+                } else {
+                    links.style.display = 'none'; // Hide the links
+                }
+            });
+        </script>
+    </body>
+</html>
