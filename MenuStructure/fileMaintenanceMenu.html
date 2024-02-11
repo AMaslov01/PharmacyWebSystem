@@ -1,72 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="FMM.css">
-    <title>Menu</title>
+    <link rel="stylesheet" href="fileMaintenanceMenu.css">
+    <title>File Maintenance Menu</title>
 </head>
-<body>
-<div class="header">
+    <body>
 
-    <div class="logo">
-        <a href="menu.html"><img src="logo6.png" width="110px" height="110px" alt="logo"></a>
-    </div>
+        <div class="header">
+            <div class="logo">
+                <a href="menu.html"><img src="logo6.png" width="110px" height="110px" alt="logo"></a>
+            </div>
 
-    <div class="menu_button" id="menu_button">
-        <p class="menu">MENU</p>
-    </div>
+            <div class="menu_button" id="menu_button">
+                <p class="menu">MENU</p>
+            </div>
 
-    <div class="page_name">
-        <p class="page">FILE MAINTENANCE MENU</p>
-    </div>
+            <div class="page_name">
+                <p class="page">FILE MAINTENANCE MENU</p>
+            </div>
 
-    <div class="links" id="links">
-        <div class="link" style="top: 5px; left: 0;">
-            <a style="margin: 0; color: white; font-size: 30px;">COUNTER SALES</a>
+            <div class="links" id="links">
+                <div class="link" style="top: 5px; left: 0;">
+                    <a style="margin: 0; color: white; font-size: 30px;">COUNTER SALES</a>
+                </div>
+
+                <div class="link" style="top: 50px; left: 0;">
+                    <a style="margin: 0; color: white; font-size: 30px;">DISPENSE DRUGS</a>
+                </div>
+
+                <div class="link" style="top: 0; left: 350px">
+                    <a style="margin: 0; color: white; font-size: 30px;">STOCK CONTROL MENU</a>
+                </div>
+
+                <div class="link" style="top: 50px; left: 350px">
+                    <a style="margin: 0; color: white; font-size: 30px;">SUPPLIER ACCOUNTS MENU</a>
+                </div>
+
+                <div class="link" style="top: 0; left: 820px">
+                    <a href="fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
+                </div>
+
+                <div class="link" style="top: 50px; left: 820px">
+                    <a style="margin: 0; color: white; font-size: 30px;">REPORTS MENU</a>
+                </div>
+            </div>
+
+            <div class="logout">
+                <a href="logIn.html"><img src="logout3.png" width="160px" height="160px" alt="logo"></a>
+            </div>
         </div>
 
-        <div class="link" style="top: 50px; left: 0;">
-            <a style="margin: 0; color: white; font-size: 30px;">DISPENSE DRUGS</a>
+        <div class="customer_button" id="customer_button" style="top: 200px;">
+            <p class="customer">CUSTOMER</p>
+        </div>
+        <div class="customer_actions" id="customer_actions" style="top: 205px;">
+            <div class="action" style="left: 10px">
+                <a class="action_text" href="addCustomer.html">ADD</a>
+            </div>
+            <div class="action" style="left: 170px">
+                <a class="action_text">VIEW/AMEND</a>
+            </div>
+            <div class="action" style="left: 480px">
+                <a class="action_text">DELETE</a>
+            </div>
         </div>
 
-        <div class="link" style="top: 0; left: 350px">
-            <a style="margin: 0; color: white; font-size: 30px;">STOCK CONTROL MENU</a>
+        <div class="doctor_button" id="doctor_button" style="top: 350px;">
+            <p class="doctor">DOCTOR</p>
+        </div>
+        <div class="doctor_actions" id="doctor_actions" style="top: 355px;">
+            <div class="action" style="left: 10px">
+                <a class="action_text">ADD</a>
+            </div>
+            <div class="action" style="left: 170px">
+                <a class="action_text">VIEW/AMEND</a>
+            </div>
+            <div class="action" style="left: 480px">
+                <a class="action_text">DELETE</a>
+            </div>
         </div>
 
-        <div class="link" style="top: 50px; left: 350px">
-            <a style="margin: 0; color: white; font-size: 30px;">SUPPLIER ACCOUNTS MENU</a>
+        <div class="drug_button" id="drug_button" style="top: 500px;">
+            <p class="drug">DRUG</p>
+        </div>
+        <div class="drug_actions" id="drug_actions" style="top: 505px;">
+            <div class="action" style="left: 10px">
+                <a class="action_text">ADD</a>
+            </div>
+            <div class="action" style="left: 170px">
+                <a class="action_text">VIEW/AMEND</a>
+            </div>
+            <div class="action" style="left: 480px">
+                <a class="action_text">DELETE</a>
+            </div>
         </div>
 
-        <div class="link" style="top: 0; left: 820px">
-            <a href="fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
+        <div class="supplier_button" id="supplier_button" style="top: 650px;">
+            <p class="supplier">SUPPLIER</p>
+        </div>
+        <div class="supplier_actions" id="supplier_actions" style="top: 655px;">
+            <div class="action" style="left: 10px">
+                <a class="action_text">ADD</a>
+            </div>
+            <div class="action" style="left: 170px">
+                <a class="action_text">VIEW/AMEND</a>
+            </div>
+            <div class="action" style="left: 480px">
+                <a class="action_text">DELETE</a>
+            </div>
         </div>
 
-        <div class="link" style="top: 50px; left: 820px">
-            <a style="margin: 0; color: white; font-size: 30px;">REPORTS MENU</a>
+        <div class="stock_button" id="stock_button" style="top: 800px; width: 300px;">
+            <p class="stock">STOCK ITEM</p>
         </div>
-    </div>
+        <div class="stock_actions" id="stock_actions" style="top: 805px;">
+            <div class="action" style="left: 10px">
+                <a class="action_text">ADD</a>
+            </div>
+            <div class="action" style="left: 170px">
+                <a class="action_text">VIEW/AMEND</a>
+            </div>
+            <div class="action" style="left: 480px">
+                <a class="action_text">DELETE</a>
+            </div>
+        </div>
 
-    <div class="logout">
-        <a href="logIn.html"><img src="logout3.png" width="160px" height="160px" alt="logo"></a>
-    </div>
 
-</div>
-
-
-<script>
-    document.getElementById('menu_button').addEventListener('click', function() {
-        var links = document.querySelector('.links');
-        var menu_button = document.querySelector('.menu_button');
-        var page_name = document.querySelector('.page_name');
-        if (links.style.display === 'none') {
-            links.style.display = 'block'; // Show the links
-            menu_button.style.transform = 'scale(1.2)'; // Make the MENU larger
-            page_name.style.display = 'none';
-        } else {
-            links.style.display = 'none'; // Hide the links
-            menu_button.style.transform = 'scale(1.05)'; // Make the MENU smaller
-            page_name.style.display = 'block';
-        }
-    });
-</script>
-</body>
+        <script src="fileMaintenanceMenu.js"></script>
+    </body>
 </html>
