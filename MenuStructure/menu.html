@@ -8,11 +8,11 @@
         <div class="header">
 
             <div class="logo">
-                <img src="logo6.png" width="110px" height="110px" alt="logo">
+                <a href="menu.html"><img src="logo6.png" width="110px" height="110px" alt="logo"></a>
             </div>
 
             <div class="menu_button" id="menu_button">
-                <p style="user-select: none; position: fixed; margin: 0; margin-left: 8px; color: white; font-size: 64px; font-weight: 700;">MENU</p>
+                <p class="menu">MENU</p>
             </div>
 
             <div class="links" id="links">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="logout">
-                <a href="logIn.html"><img src="logout.png" width="110px" height="110px" alt="logo"></a>
+                <a href="logIn.html"><img src="logout3.png" width="160px" height="160px" alt="logo"></a>
             </div>
 
         </div>
@@ -51,10 +51,13 @@
         <script>
             document.getElementById('menu_button').addEventListener('click', function() {
                 var links = document.querySelector('.links');
+                var menu_button = document.querySelector('.menu_button');
                 if (links.style.display === 'none') {
                     links.style.display = 'block'; // Show the links
+                    menu_button.style.transform = 'scale(1.2)'; // Make the MENU larger
                 } else {
                     links.style.display = 'none'; // Hide the links
+                    menu_button.style.transform = 'scale(1.05)'; // Make the MENU smaller
                 }
             });
         </script>
