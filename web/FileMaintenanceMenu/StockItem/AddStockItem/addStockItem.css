@@ -150,9 +150,7 @@ form {
 }
 
 input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="date"] {
+input[type="number"] {
     font-family: "JetBrains Mono";
     color: white;
     font-size: 24px;
@@ -166,17 +164,15 @@ input[type="date"] {
     border-radius: 8px;
 }
 
-input[type="tel"]:default {
-    background-color: rgb(0,146,69);
-}
-
-::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
-
-input[type=date]:invalid::-webkit-datetime-edit {
-    color: rgba(255, 255, 255, 0.5);
-}
+/* To disable ugly arrows:
+input[type="number"] {
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
+} */
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
