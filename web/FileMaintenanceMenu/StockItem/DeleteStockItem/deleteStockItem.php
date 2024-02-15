@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="amendViewStockItem.css">
-        <title>View/Amend Stock Item</title>
+        <link rel="stylesheet" href="deleteStockItem.css">
+        <title>Delete Stock Item</title>
     </head>
     <body>
 
@@ -16,7 +16,7 @@
             </div>
 
             <div class="page_name">
-                <p class="page">VIEW/AMEND STOCK ITEM</p>
+                <p class="page">DELETE STOCK ITEM</p>
             </div>
 
             <div class="links" id="links">
@@ -50,7 +50,7 @@
             </div>
         </div>
 
-        <form action="amendStockItem.php" method="post" onsubmit="return validateForm()">
+        <form action="deletedStockItem.php" method="post" onsubmit="return validateForm()">
             <div class="form_line">
                 <label for="stockItemDescription">SELECT STOCK ITEM</label>
                 <select name="stockItemDescription" id="stockItemDescription" onclick="populate()" required>
@@ -58,7 +58,7 @@
                     <?php
                     include '../../../db.inc.php'; // Adjust the path as necessary
 
-                    $sql = "SELECT stockID, description, costPrice, retailPrice, reorderLevel, reorderQuantity, quantityInStock, supplierName 
+                    $sql = "SELECT stockID, description, quantityInStock, costPrice, supplierName, reorderQuantity 
                         FROM stock 
                         JOIN supplier ON stock.supplierID = supplier.supplierID 
                         WHERE stock.isDeleted = 0
@@ -84,8 +84,6 @@
                 </select>
             </div>
 
-            <input type="button" value="AMEND" id="amendViewButton" onclick="toggleLock()">
-
             <div class="form_line" style="margin-top: 30px;">
                 <label for="stockID">STOCK ID</label>
                 <input type="number" id="stockID" name="stockID" pattern="[0-9]+" required disabled>
@@ -97,28 +95,13 @@
             </div>
 
             <div class="form_line">
-            <label for="costPrice">COST PRICE</label>
-                <input type="number" id="costPrice" name="costPrice" min="1" required disabled>
-            </div>
-
-            <div class="form_line">
-                <label for="retailPrice">RETAIL PRICE</label>
-                <input type="number" id="retailPrice" name="retailPrice" min="1" required disabled>
-            </div>
-
-            <div class="form_line">
-                <label for="reorderLevel">REORDER LEVEL</label>
-                <input type="number" id="reorderLevel" name="reorderLevel" min="0" required disabled>
-            </div>
-
-            <div class="form_line">
-                <label for="reorderQuantity">REORDER QUANTITY</label>
-                <input type="number" id="reorderQuantity" name="reorderQuantity" min="1" required disabled>
-            </div>
-
-            <div class="form_line">
                 <label for="quantityInStock">QUANTITY IN STOCK</label>
                 <input type="number" id="quantityInStock" name="quantityInStock" min="0" required disabled>
+            </div>
+
+            <div class="form_line">
+            <label for="costPrice">COST PRICE</label>
+                <input type="number" id="costPrice" name="costPrice" min="1" required disabled>
             </div>
 
             <div class="form_line">
@@ -128,10 +111,10 @@
 
             <div class="form_line">
                 <span></span>
-                <input type="submit" value="SAVE" name="submit"/>
+                <input type="submit" value="DELETE" id="deleteButton"/>
             </div>
         </form>
 
-        <script src="amendViewStockItem.js"></script>
+        <script src="deleteStockItem.js"></script>
     </body>
 </html>

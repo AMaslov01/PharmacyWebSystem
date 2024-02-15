@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="amendViewStockItem.css">
+        <link rel="stylesheet" href="deleteStockItem.css">
     </head>
     <body>
         <div class="header">
@@ -13,7 +13,7 @@
             </div>
 
             <div class="page_name">
-                <p class="page">AMENDED STOCK ITEM</p>
+                <p class="page">DELETED STOCK ITEM</p>
             </div>
 
             <div class="links" id="links">
@@ -47,42 +47,26 @@
             </div>
         </div>
 
-        <div class="amended">
+        <div class="deleted">
             <p style="margin-bottom: 40px;">
                 <?php
-                //echo "<pre>";
-                //print_r($_POST);
-                //echo "</pre>";
-
                 include '../../../db.inc.php'; // Adjust the path as necessary
 
-                $sql = "UPDATE stock SET 
-                    description = '{$_POST['description']}',  
-                    costPrice = '{$_POST['costPrice']}', 
-                    retailPrice = '{$_POST['retailPrice']}', 
-                    reorderLevel = '{$_POST['reorderLevel']}', 
-                    reorderQuantity = '{$_POST['reorderQuantity']}', 
-                    quantityInStock = '{$_POST['quantityInStock']}' 
-                    WHERE stockID = '{$_POST['stockItemDescription']}'";
+                $sql = "UPDATE stock SET isDeleted = '1' WHERE stockID = '{$_POST['stockItemDescription']}'";
 
-                if (!mysqli_query($con, $sql)) {
-                    die("An Error in the SQL Query: " . mysqli_error($con)); // Displaying error message if query execution fails
+                if(mysqli_query($con, $sql)) {
+                    echo "STOCK ID: ".$_POST['stockItemDescription']."<br>RECORD DELETED SUCCESSFULLY";
                 } else {
-                    if(mysqli_affected_rows($con) != 0){
-                        echo $_POST['description']." RECORD UPDATED SUCCESSFULLY<br>";
-                        echo "STOCK ID: ".$_POST['stockItemDescription'];
-                    } else {
-                        echo "NO RECORDS WERE CHANGED";
-                    }
+                    die("An Error in the SQL Query: " . mysqli_error($con));
                 }
 
                 mysqli_close($con);
                 ?>
             </p>
-            <a class="goback" href="amendViewStockItem.php">GO BACK</a>
+            <a class="goback" href="deleteStockItem.php">GO BACK</a>
 
         </div>
 
-        <script src="amendViewStockItem.js"></script>
+        <script src="deleteStockItem.js"></script>
     </body>
 </html>
