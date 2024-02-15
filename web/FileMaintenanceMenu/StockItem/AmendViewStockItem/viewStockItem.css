@@ -1,6 +1,7 @@
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
+    height: 1050px;
     padding: 0;
     margin: 0;
 }
@@ -12,6 +13,7 @@ body {
 }
 
 .header {
+    z-index: 1;
     padding: 0;
     margin: 0;
     position: fixed;
@@ -74,10 +76,10 @@ body {
 }
 
 .menu:hover {
-    /* box-shadow: 5px 5px 7px 1px rgba(255, 255, 255, 0.85); */
     transform: scale(1.05);
     transition-duration: .5s;
 }
+
 .menu:not(:hover){
     transform: scale(1);
     transition-duration: .5s;
@@ -90,14 +92,7 @@ body {
     left: 170px;
     top: 18px;
     transition-duration: .5s;
-    /* border: 5px white solid;
-    border-radius: 20px; */
 }
-
-.menu_button:hover {
-    color: #c8c8c8;
-}
-
 
 a {
     user-select: none;
@@ -108,4 +103,18 @@ a {
 a:hover {
     font-weight: 800;
     transition-duration: .1s;
+}
+
+.page {
+    user-select: none;
+    color: white;
+    font-size: 64px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.page_name {
+    position: absolute;
+    top: 18px;
+    left: 575px;
 }
