@@ -81,7 +81,7 @@
     </div>
 
         <div class="added">
-            <p style="margin-bottom: 40px;" >A NEW STOCK ITEM HAS BEEN ADDED</p>
+            <p style="margin-bottom: 40px;">A NEW STOCK ITEM HAS BEEN ADDED</p>
             <p style="margin-top: 0; margin-bottom: 200px;" >ID: <?php echo $newStockID ?></p>
             <a class="goback" href="addStockItem.php">GO BACK</a>
         </div>
@@ -89,5 +89,3 @@
         <script src="addStockItem.js"></script>
     </body>
 </html>
-
-

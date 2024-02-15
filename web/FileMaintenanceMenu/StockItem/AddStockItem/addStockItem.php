@@ -76,7 +76,6 @@
                 <input type="number" id="reorderQuantity" name="reorderQuantity" min="1" required>
             </div>
 
-            <!-- TODO: Since typing is an error-prone activity, you should  select the supplier’s name from a list of all suppliers known to the system. -->
             <div class="form_line">
                 <label for="supplierName">SUPPLIER NAME</label>
                 <select name="supplierName" id="supplierName" required>
@@ -100,7 +99,6 @@
 
                     mysqli_close($con);
                     ?>
-
                 </select>
             </div>
 

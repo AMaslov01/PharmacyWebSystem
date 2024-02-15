@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <link rel="stylesheet" href="viewStockItem.css">
-        <title>View/Amend Stock Item</title>
+        <link rel="stylesheet" href="amendViewStockItem.css">
     </head>
     <body>
-
         <div class="header">
             <div class="logo">
                 <a href="../../../menu.html"><img src="../../../Resources/logo6.png" width="110px" height="110px" alt="logo"></a>
@@ -16,7 +13,7 @@
             </div>
 
             <div class="page_name">
-                <p class="page">VIEW/AMEND STOCK ITEM</p>
+                <p class="page">ADD STOCK ITEM FORM</p>
             </div>
 
             <div class="links" id="links">
@@ -50,12 +47,42 @@
             </div>
         </div>
 
-        <form action="">
+        <div class="amended">
+            <p style="margin-bottom: 40px;">
+                <?php
+                //echo "<pre>";
+                //print_r($_POST);
+                //echo "</pre>";
 
+                include '../../../db.inc.php'; // Adjust the path as necessary
 
+                $sql = "UPDATE stock SET 
+                    description = '{$_POST['description']}',  
+                    costPrice = '{$_POST['costPrice']}', 
+                    retailPrice = '{$_POST['retailPrice']}', 
+                    reorderLevel = '{$_POST['reorderLevel']}', 
+                    reorderQuantity = '{$_POST['reorderQuantity']}', 
+                    quantityInStock = '{$_POST['quantityInStock']}' 
+                    WHERE stockID = '{$_POST['stockItemDescription']}'";
 
-        </form>
+                if (!mysqli_query($con, $sql)) {
+                    die("An Error in the SQL Query: " . mysqli_error($con)); // Displaying error message if query execution fails
+                } else {
+                    if(mysqli_affected_rows($con) != 0){
+                        echo $_POST['description']." RECORD UPDATED SUCCESSFULLY<br>";
+                        echo "STOCK ID: ".$_POST['stockItemDescription'];
+                    } else {
+                        echo "NO RECORDS WERE CHANGED";
+                    }
+                }
+                $stockID = mysqli_insert_id($con);
+                mysqli_close($con);
+                ?>
+            </p>
+            <a class="goback" href="amendViewStockItem.php">GO BACK</a>
 
-        <script src="viewStockItem.js"></script>
+        </div>
+
+        <script src="amendViewStockItem.js"></script>
     </body>
 </html>
