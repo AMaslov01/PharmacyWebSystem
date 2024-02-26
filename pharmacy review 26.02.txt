@@ -1,0 +1,21 @@
+pharmacy review 26.02
+
+add:
+change field to accept decimal
+supplier stock code is varchar
+quantity in stock in add is to be removed
+
+view/amend:
+change field to accept decimal
+should be able to change supplier name in view/amend
+
+delete:
+order_to_stock table
+dateOfDelivery --> Order
+dateOfOrder, supplierDrugCode, drugDescription --> Drug
+price is to be removed
+if the item is present on the order_to_stock table, than it can not be deleted
+make alert messages depend on the failed condition
+
+all:
+объединить страницы подтверждения. выводить результат на странице с формой.

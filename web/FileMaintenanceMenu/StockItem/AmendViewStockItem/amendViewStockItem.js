@@ -74,6 +74,7 @@ function toggleLock() {
 }
 
 function confirmChanges(){
+    // May be: "Please confirm that the details are correct"
     return confirm("Are you sure you want to make these changes?"); // Display confirmation dialog and return user's choice
 }
 

@@ -58,7 +58,7 @@
 
             <div class="form_line">
                 <label for="costPrice">COST PRICE</label>
-                <input type="number" id="costPrice" name="costPrice" min="1" required>
+                <input type="number" id="costPrice" name="costPrice" min="1"  required>
             </div>
 
             <div class="form_line">
@@ -114,7 +114,7 @@
 
             <div class="form_line">
                 <input type="reset" value="CLEAR" name="reset"/>
-                <input type="submit" value="SEND" name="submit"/>
+                <input type="submit" value="ADD" name="submit"/>
             </div>
 
         </form>
