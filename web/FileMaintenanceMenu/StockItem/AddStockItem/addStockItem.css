@@ -1,7 +1,6 @@
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
-    height: 1050px;
     padding: 0;
     margin: 0;
 }
@@ -219,15 +218,6 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     transition-duration: .5s;
 }
 
-.added {
-    position: absolute;
-    left: 150px;
-    top: 150px;
-    color: white;
-    font-size: 84px;
-    font-weight: 800;
-}
-
 .goback {
     border: 5px white solid;
     border-radius: 8px;
@@ -241,4 +231,8 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     font-weight: 800;
     border: 7px white solid;
     transition-duration: .1s;
+}
+
+.added {
+    display: none;
 }

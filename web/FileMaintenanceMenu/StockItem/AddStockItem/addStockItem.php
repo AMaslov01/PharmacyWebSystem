@@ -1,3 +1,51 @@
+<?php   // The idea is to use session variable to prevent users from resubmitting the form over and over again on page reload.
+        // This is achieved by setting a session variable on form submission and the checking if it is set.
+    session_start(); // Start the session
+    include '../../../db.inc.php';
+    $message = '';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+        // Fetch the highest current StockID
+        $sql = "SELECT MAX(StockID) AS MaxStockID FROM Stock";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $maxStockID = $row['MaxStockID'];
+
+        // Increment the StockID by 1 for the new record
+        $newStockID = $maxStockID + 1;
+
+        $supplierID = $_POST['supplierName'];
+        $description = $_POST['description'];
+        $costPrice = $_POST['costPrice'];
+        $retailPrice = $_POST['retailPrice'];
+        $reorderLevel = $_POST['reorderLevel'];
+        $reorderQuantity = $_POST['reorderQuantity'];
+        $supplierStockCode = $_POST['supplierStockCode'];
+
+        $sql = "INSERT INTO Stock (StockID, description, costPrice, retailPrice, reorderLevel, reorderQuantity, supplierID, supplierStockCode, quantityInStock) VALUES ('$newStockID', '$description', '$costPrice', '$retailPrice', '$reorderLevel', '$reorderQuantity', '$supplierID', '$supplierStockCode', 0)";
+
+        if (mysqli_query($con, $sql)) {
+            $message = "A NEW STOCK ITEM HAS BEEN ADDED. ID: $maxStockID";
+        } else {
+            $message = "An Error in the SQL Query: " . mysqli_error($con);
+        }
+
+        $stockID = mysqli_insert_id($con);
+
+        $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+    } elseif (isset($_SESSION['form_submitted'])) {
+        $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+    }
+
+    // Clear the form submission flag when displaying the form again
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        unset($_SESSION['form_submitted']);
+        $message = '';
+    }
+
+    mysqli_close($con);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -5,7 +53,6 @@
         <title>Add Stock Item</title>
     </head>
     <body>
-
         <div class="header">
             <div class="logo">
                 <a href="../../../menu.html"><img src="../../../Resources/logo6.png" width="110px" height="110px" alt="logo"></a>
@@ -50,7 +97,7 @@
             </div>
         </div>
 
-        <form action="addedStockItem.php" method="post" onsubmit="return validateForm()">
+        <form method="post" onsubmit="return validateForm()">
             <div class="form_line">
                 <label for="description">DESCRIPTION</label>
                 <input type="text" id="description" name="description" pattern="[0-9A-Za-z., ]+" required>
@@ -58,12 +105,12 @@
 
             <div class="form_line">
                 <label for="costPrice">COST PRICE</label>
-                <input type="number" id="costPrice" name="costPrice" min="1"  required>
+                <input type="number" id="costPrice" name="costPrice" min="0.01" step=".01" required>
             </div>
 
             <div class="form_line">
                 <label for="retailPrice">RETAIL PRICE</label>
-                <input type="number" id="retailPrice" name="retailPrice" min="1" required>
+                <input type="number" id="retailPrice" name="retailPrice" min="0.01" step=".01" required>
             </div>
 
             <div class="form_line">
@@ -82,7 +129,7 @@
                     <option value="">Select a supplier</option>
 
                     <?php
-                    include '../../../db.inc.php'; // Adjust the path as necessary
+                    include '../../../db.inc.php';
 
                     $sql = "SELECT supplierID, supplierName FROM supplier ORDER BY supplierName ASC";
                     if (!empty($con)) {
@@ -104,12 +151,7 @@
 
             <div class="form_line">
                 <label for="supplierStockCode">SUPPLIER STOCK CODE</label>
-                <input type="number" id="supplierStockCode" name="supplierStockCode" required>
-            </div>
-
-            <div class="form_line">
-                <label for="quantityInStock">QUANTITY IN STOCK</label>
-                <input type="number" id="quantityInStock" name="quantityInStock" min="0" required>
+                <input type="text" id="supplierStockCode" name="supplierStockCode" pattern="[0-9A-Za-z]+" required>
             </div>
 
             <div class="form_line">
@@ -117,8 +159,14 @@
                 <input type="submit" value="ADD" name="submit"/>
             </div>
 
-        </form>
+            <div class="form_line">
+                <div class="added" id="added">
+                    <br><br><br>
+                    <label><?php if (!empty($message)) echo "<p>$message</p>"; ?></label>
+                </div>
+            </div>
 
+        </form>
 
         <script src="addStockItem.js"></script>
     </body>

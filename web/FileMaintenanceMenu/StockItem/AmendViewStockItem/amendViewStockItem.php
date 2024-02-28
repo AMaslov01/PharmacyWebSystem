@@ -1,3 +1,48 @@
+<?php
+    session_start(); // Start the session
+    include '../../../db.inc.php';
+
+    // Check if the reset action is requested
+    if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+        unset($_SESSION['form_submitted']);
+        // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+        header('Location: amendViewStockItem.php');
+        exit;
+    }
+
+    $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+        $sql = "UPDATE stock SET 
+                description = '{$_POST['description']}',  
+                costPrice = '{$_POST['costPrice']}', 
+                retailPrice = '{$_POST['retailPrice']}', 
+                reorderLevel = '{$_POST['reorderLevel']}', 
+                reorderQuantity = '{$_POST['reorderQuantity']}', 
+                quantityInStock = '{$_POST['quantityInStock']}',
+                supplierID = '{$_POST['supplierName']}'
+                WHERE stockID = '{$_POST['stockItemDescription']}'";
+
+        if (mysqli_query($con, $sql)) {
+            $message = "RECORD UPDATED SUCCESSFULLY. ID: ".$_POST['stockItemDescription'];
+            //die("An Error in the SQL Query: " . mysqli_error($con)); // Displaying error message if query execution fails
+        } else {
+            $message = "An Error in the SQL Query: " . mysqli_error($con);
+        }
+
+        $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+    } elseif (isset($_SESSION['form_submitted'])) {
+        $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        unset($_SESSION['form_submitted']);
+        $message = '';
+    }
+
+    mysqli_close($con);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -50,7 +95,7 @@
             </div>
         </div>
 
-        <form action="amendStockItem.php" method="post" onsubmit="return validateForm()">
+        <form method="post" onsubmit="return validateForm()">
             <div class="form_line">
                 <label for="stockItemDescription">SELECT STOCK ITEM</label>
                 <select name="stockItemDescription" id="stockItemDescription" onclick="populate()" required>
@@ -97,13 +142,13 @@
             </div>
 
             <div class="form_line">
-            <label for="costPrice">COST PRICE</label>
-                <input type="number" id="costPrice" name="costPrice" min="1" required disabled>
+                <label for="costPrice">COST PRICE</label>
+                <input type="number" id="costPrice" name="costPrice" min="0.01" step=".01" required disabled>
             </div>
 
             <div class="form_line">
                 <label for="retailPrice">RETAIL PRICE</label>
-                <input type="number" id="retailPrice" name="retailPrice" min="1" required disabled>
+                <input type="number" id="retailPrice" name="retailPrice" min="0.01" step=".01" required disabled>
             </div>
 
             <div class="form_line">
@@ -121,14 +166,54 @@
                 <input type="number" id="quantityInStock" name="quantityInStock" min="0" required disabled>
             </div>
 
-            <div class="form_line">
-                <label for="supplierName">SUPPLIER NAME</label>
-                <input type="text" id="supplierName" name="supplierName" pattern="[0-9A-Za-z., ]+" required disabled>
+            <div class="supplierDiv1" id="supplierDiv1">
+                <div class="form_line">
+                    <label for="supplierName">SUPPLIER NAME</label>
+                    <input type="text" id="supplierName" name="supplierName" pattern="[0-9A-Za-z., ]+" required disabled>
+                </div>
+            </div>
+
+            <div class="supplierDiv2" style="display: none;" id="supplierDiv2">
+                <div class="form_line">
+                    <label for="supplierName">SUPPLIER NAME</label>
+                    <select name="supplierName" id="supplierName" required>
+                        <option value="">Select a supplier</option>
+                        <?php
+                        include '../../../db.inc.php';
+
+                        $sql = "SELECT supplierID, supplierName FROM supplier ORDER BY supplierName ASC";
+                        if (!empty($con)) {
+                            $result = mysqli_query($con, $sql);
+                        }
+
+                        if ($result) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
+                            }
+                        } else {
+                            echo '<option value="">Failed to load suppliers</option>';
+                        }
+
+                        mysqli_close($con);
+                        ?>
+                    </select>
+                </div>
             </div>
 
             <div class="form_line">
                 <span></span>
                 <input type="submit" value="SAVE" name="submit"/>
+            </div>
+
+            <!-- The purpose of the okButton is to basically reload the page without resubmitting the form. This is achieved by sending a specific query parameter when the "OK" button is clicked, which the PHP script checks for at the beginning of the page load to reset the session and message, which make it possible for further successful amending -->
+            <div class="form_line">
+                <div class="amended" id="amended">
+                    <?php if (!empty($message)) : ?>
+                        <p><?php echo $message; ?></p>
+                        <!-- OK button to reset the message -->
+                        <div class="okButton"><a href="amendViewStockItem.php?action=resetMessage" class="okText">OK</a></div>
+                    <?php endif; ?>
+                </div>
             </div>
         </form>
 
