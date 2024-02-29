@@ -112,6 +112,8 @@
                         $result = mysqli_query($con, $sql);
                     }
 
+                    //global $supplierID;
+
                     // data-details is used to store all the details of each stock item as a single string within the HTML <option> elements, while $details is a PHP variable used to construct this string. JavaScript then retrieves this string from the selected <option> element and splits it to populate the form fields with the appropriate details.
 
                     if ($result) {
@@ -119,6 +121,7 @@
                             // Combine all relevant details with a delimiter (comma)
                             $details = implode(',', $row);
                             echo '<option value="'.$row['stockID'].'" data-details="'.$details.'">'.$row['description'].'</option>';
+                            //$supplierID = $row['supplierID'];
                         }
                     } else {
                         echo '<option value="">Failed to load stock items</option>';
@@ -188,7 +191,11 @@
 
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
+                                if($row['supplierID'] == $supplierID) {
+                                    echo '<option value="'.$row['supplierID'].'" selected="selected">'.$row['supplierName'].'</option>';
+                                } else {
+                                    echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
+                                }
                             }
                         } else {
                             echo '<option value="">Failed to load suppliers</option>';
@@ -208,6 +215,7 @@
             <!-- The purpose of the okButton is to basically reload the page without resubmitting the form. This is achieved by sending a specific query parameter when the "OK" button is clicked, which the PHP script checks for at the beginning of the page load to reset the session and message, which make it possible for further successful amending -->
             <div class="form_line">
                 <div class="amended" id="amended">
+                    <br><br><br>
                     <?php if (!empty($message)) : ?>
                         <p><?php echo $message; ?></p>
                         <!-- OK button to reset the message -->

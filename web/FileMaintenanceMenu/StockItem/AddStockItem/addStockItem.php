@@ -2,7 +2,16 @@
         // This is achieved by setting a session variable on form submission and the checking if it is set.
     session_start(); // Start the session
     include '../../../db.inc.php';
-    $message = '';
+
+    // Check if the reset action is requested
+    if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+        unset($_SESSION['form_submitted']);
+        // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+        header('Location: addStockItem.php');
+        exit;
+    }
+
+    $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
         // Fetch the highest current StockID
@@ -162,7 +171,12 @@
             <div class="form_line">
                 <div class="added" id="added">
                     <br><br><br>
-                    <label><?php if (!empty($message)) echo "<p>$message</p>"; ?></label>
+                    <label><?php if (!empty($message)) : ?>
+                            <p><?php echo $message; ?></p>
+                            <!-- OK button to reset the message -->
+                            <div class="okButton"><a href="addStockItem.php?action=resetMessage" class="okText">OK</a></div>
+                        <?php endif; ?>
+                    </label>
                 </div>
             </div>
 
