@@ -112,7 +112,7 @@
                         $result = mysqli_query($con, $sql);
                     }
 
-                    //global $supplierID;
+                    global $supplierID;
 
                     // data-details is used to store all the details of each stock item as a single string within the HTML <option> elements, while $details is a PHP variable used to construct this string. JavaScript then retrieves this string from the selected <option> element and splits it to populate the form fields with the appropriate details.
 
@@ -180,7 +180,7 @@
                 <div class="form_line">
                     <label for="supplierName">SUPPLIER NAME</label>
                     <select name="supplierName" id="supplierName" required>
-                        <option value="">Select a supplier</option>
+                        <option id="preselectedSupplier" value="">Select a supplier</option>
                         <?php
                         include '../../../db.inc.php';
 
@@ -191,11 +191,7 @@
 
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                if($row['supplierID'] == $supplierID) {
-                                    echo '<option value="'.$row['supplierID'].'" selected="selected">'.$row['supplierName'].'</option>';
-                                } else {
-                                    echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
-                                }
+                                echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
                             }
                         } else {
                             echo '<option value="">Failed to load suppliers</option>';

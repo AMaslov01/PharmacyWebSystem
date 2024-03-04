@@ -77,6 +77,8 @@ function toggleLock() {
         document.getElementById("supplierDiv2").style.display = 'none';
         document.getElementById("supplierDiv1").style.display = 'block';
         // TODO: make it so that correct supplier name is preselected
+        document.getElementById("preselectedSupplier").value = "SUPPLIER"
+        //document.getElementById("supplierDiv2").value = document.getElementById("supplierDiv1").value;
     }
 }
 
