@@ -1,3 +1,63 @@
+<?php
+
+session_start(); // Start the session
+include '../../../db.inc.php';
+
+// Check if the reset action is requested
+if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+    unset($_SESSION['form_submitted']);
+    // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+    header('Location: addDoctor.php');
+    exit;
+}
+
+$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+    // Fetch the highest current StockID
+    $sql = "SELECT MAX(doctorID) AS MaxDoctorID FROM Doctor";
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $maxDoctorID = $row['MaxDoctorID'];
+
+    // Increment the StockID by 1 for the new record
+    $newDoctorID = $maxDoctorID + 1;
+
+    $doctorSurname = $_POST['surname'];
+    $doctorFirtsname = $_POST['firstName'];
+    $surgeryAddress = $_POST['surgeryAddress'];
+    $surgeryEircode = $_POST['surgeryEircode'];
+    $surgeryTelephoneNumber = $_POST['surgeryTelephoneNumber'];
+    $mobileTelephoneNumber = $_POST['mobileTelephoneNumber'];
+    $homeAddress = $_POST['homeAddress'];
+    $homeEircode = $_POST['homeEircode'];
+    $homeTelephoneNumber = $_POST['homeTelephoneNumber'];
+
+
+    $sql = "INSERT INTO Doctor (doctorID, doctorSurname, doctorFirstname, surgeryAddress, surgeryEircode, surgeryTelephoneNumber, mobileTelephoneNumber, homeAddress, homeEircode, homeTelephoneNumber) VALUES ('$newDoctorID', '$doctorSurname', '$doctorFirtsname', '$surgeryAddress', '$surgeryEircode', '$surgeryTelephoneNumber', '$mobileTelephoneNumber', '$homeAddress', '$homeEircode', '$homeTelephoneNumber')";
+
+        if (mysqli_query($con, $sql)) {
+            $message = "A NEW DOCTOR HAS BEEN ADDED. ID: $maxDoctorID";
+        } else {
+            $message = "An Error in the SQL Query: " . mysqli_error($con);
+        }
+
+        $stockID = mysqli_insert_id($con);
+
+        $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+    } elseif (isset($_SESSION['form_submitted'])) {
+        $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+    }
+
+    // Clear the form submission flag when displaying the form again
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        unset($_SESSION['form_submitted']);
+        $message = '';
+    }
+
+mysqli_close($con);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,6 +159,18 @@
     <div class="form_line">
         <input type="reset" value="CLEAR" name="reset"/>
         <input type="submit" value="SEND" name="submit"/>
+    </div>
+
+    <div class="form_line">
+        <div class="added" id="added">
+            <br><br><br>
+            <label><?php if (!empty($message)) : ?>
+                    <p><?php echo $message; ?></p>
+                    <!-- OK button to reset the message -->
+                    <div class="okButton"><a href="addDoctor.php?action=resetMessage" class="okText">OK</a></div>
+                <?php endif; ?>
+            </label>
+        </div>
     </div>
 
 </form>
