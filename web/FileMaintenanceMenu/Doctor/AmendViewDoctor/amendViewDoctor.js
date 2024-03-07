@@ -28,7 +28,7 @@ function populate() {
     var details = sel.options[sel.selectedIndex].getAttribute("data-details");
 
     if (result === "") {
-        // Clear all fields if no stock item is selected
+        // Clear all fields if no doctor is selected
         document.getElementById("doctorID").value = "";
         document.getElementById("surname").value = "";
         document.getElementById("firstName").value = "";
@@ -41,8 +41,8 @@ function populate() {
         document.getElementById("homeTelephoneNumber").value = "";
 
     } else {
-        // Split the details using the delimiter (comma)
         var doctorDetails = details.split(',');
+        console.log(doctorDetails);
         document.getElementById("doctorID").value = doctorDetails[0];
         document.getElementById("surname").value = doctorDetails[1];
         document.getElementById("firstName").value = doctorDetails[2];
@@ -95,3 +95,13 @@ function validateForm(){
     return confirmChanges();
 
 }
+document.addEventListener("DOMContentLoaded", function() {
+    var messageDiv = document.getElementById("amended");
+    var message = messageDiv.textContent || messageDiv.innerText;
+    if (message.trim().length > 1) {
+        messageDiv.style.display = "block"; // Make sure the div is visible
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        messageDiv.style.display = "none"; // Hide div if no message
+    }
+});

@@ -24,14 +24,11 @@ function confirmChanges(){
 
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("added");
-    //var body = document.getElementsByTagName("body");
     var message = messageDiv.textContent || messageDiv.innerText;
     if (message.trim().length > 1) {
-        //body.style.height = "1400px";
         messageDiv.style.display = "block"; // Make sure the div is visible
         messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-        //body.style.height = "1000px";
         messageDiv.style.display = "none"; // Hide div if no message
     }
 });
