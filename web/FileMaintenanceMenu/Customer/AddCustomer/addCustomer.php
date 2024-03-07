@@ -1,3 +1,61 @@
+<?php   
+    session_start();
+    include '../../../db.inc.php';
+
+    // Check if the reset action is requested
+    if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+        unset($_SESSION['form_submitted']);
+        // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+        header('Location: addCustomer.php');
+        exit;
+    }
+
+    $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+        // Fetch the highest current  customerId
+        $sql = "SELECT MAX(cutomerID) AS MaxcustomerID FROM Customer";
+        $result = mysqli_query($con, $sql);
+        $row = mysqli_fetch_assoc($result);
+        $maxCustomerID = $row['MaxcustomerID'];
+
+        // Increment the Customerid by 1 for the new record
+        $newCustomerID = $maxCustomerID + 1;
+
+        $customerSurname= $_POST['surname'];
+        $customerName = $_POST['firstname'];
+        $Address1 = $_POST['address'];
+        $eircode = $_POST['eircode'];
+        $dateOfBirth = $_POST['dob']
+        $telephoneNumber = $_POST['phone']	
+    
+
+        $sql = "INSERT INTO Customer (customerID, description, customerSurname, customerName, Address1, eircode, dateOfBirth, telephoneNumber) VALUES ('$customerSurname', '$customerName', '$address', '$eircode', '$dateOfBirth', '$telephoneNumber', 0)";
+
+        if (mysqli_query($con, $sql)) {
+            $message = "A NEW CUSTOMER HAS BEEN ADDED. ID: $maxStockID";
+        } else {
+            $message = "An Error in the SQL Query: " . mysqli_error($con);
+        }
+
+        $customerID = mysqli_insert_id($con);
+
+        $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+    } elseif (isset($_SESSION['form_submitted'])) {
+        $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+    }
+
+    // Clear the form submission flag when displaying the form again
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        unset($_SESSION['form_submitted']);
+        $message = '';
+    }
+
+    mysqli_close($con);
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

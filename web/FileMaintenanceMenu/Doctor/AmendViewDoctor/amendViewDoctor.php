@@ -1,3 +1,52 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+session_start(); // Start the session
+include '../../../db.inc.php';
+
+// Check if the reset action is requested
+if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+    unset($_SESSION['form_submitted']);
+    // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+    header('Location: amendViewDoctor.php');
+    exit;
+}
+
+$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+    $sql = "UPDATE Doctor SET   
+                    doctorSurname = '{$_POST['surname']}',
+                    doctorFirstname = '{$_POST['firstName']}',
+                    surgeryAddress = '{$_POST['surgeryAddress']}',
+                    surgeryEircode = '{$_POST['surgeryEircode']}',
+                    surgeryTelephoneNumber = '{$_POST['surgeryTelephoneNumber']}',
+                    mobileTelephoneNumber = '{$_POST['mobileTelephoneNumber']}',
+                    homeAddress = '{$_POST['homeAddress']}',
+                    homeEircode = '{$_POST['homeEircode']}',
+                    homeTelephoneNumber = '{$_POST['homeTelephoneNumber']}' 
+                    WHERE doctorID = '{$_POST['doctorDescription']}'";
+
+    if (mysqli_query($con, $sql)) {
+        $message = "RECORD UPDATED SUCCESSFULLY. ID: ".$_POST['doctorDescription'];
+
+    } else {
+        $message = "An Error in the SQL Query: " . mysqli_error($con);
+    }
+
+    $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+} elseif (isset($_SESSION['form_submitted'])) {
+    $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+}
+
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    unset($_SESSION['form_submitted']);
+    $message = '';
+}
+
+mysqli_close($con);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +99,7 @@
     </div>
 </div>
 
-<form action="../../Doctor/AmendViewDoctor/amendDoctor.php" method="post" onsubmit="return validateForm()">
+<form action="amendViewDoctor.php" method="post" onsubmit="return validateForm()">
     <div class="form_line">
         <label for="doctorDescription">SELECT DOCTOR</label>
         <select name="doctorDescription" id="doctorDescription" onclick="populate()" required>
@@ -77,7 +126,7 @@
                     echo '<option value="'.$row['doctorID'].'" data-details="'.$details.'">'.$row['doctorSurname'].'</option>';
                 }
             } else {
-                echo '<option value="">Failed to load customers</option>';
+                echo '<option value="">Failed to load doctors</option>';
             }
 
             mysqli_close($con);
@@ -86,6 +135,11 @@
     </div>
 
     <input type="button" value="AMEND" id="amendViewButton" onclick="toggleLock()">
+
+    <div class="form_line">
+        <label for="surname">DOCTOR ID</label>
+        <input type="text" id="doctorID" name=doctorID required disabled>
+    </div>
 
     <div class="form_line">
         <label for="surname">SURNAME</label>
@@ -109,12 +163,12 @@
 
     <div class="form_line">
         <label for="surgeryTelephoneNumber">SURGERY TELEPHONE NUMBER</label>
-        <input type="text" id="surgeryTelephoneNumber" name="surgeryTelephoneNumber" pattern="^[\d\s()-]+$" required disabled>
+        <input type="text" id="surgeryTelephoneNumber" name="surgeryTelephoneNumber" pattern="[0-9\s+\-]+" required disabled>
     </div>
 
     <div class="form_line">
         <label for="mobileTelephoneNumber">MOBILE TELEPHONE NUMBER</label>
-        <input type="text" id="mobileTelephoneNumber" name="mobileTelephoneNumber" pattern="^[\d\s()-]+$" required disabled>
+        <input type="text" id="mobileTelephoneNumber" name="mobileTelephoneNumber" pattern="[0-9\s+\-]+" required disabled>
     </div>
 
     <div class="form_line">
@@ -129,7 +183,7 @@
 
     <div class="form_line">
         <label for="homeTelephoneNumber">HOME TELEPHONE NUMBER</label>
-        <input type="text" id="homeTelephoneNumber" name="homeTelephoneNumber" pattern="^[\d\s()-]+$" required disabled>
+        <input type="text" id="homeTelephoneNumber" name="homeTelephoneNumber" pattern="[0-9\s+\-]+" required disabled>
     </div>
 
 
@@ -137,8 +191,19 @@
         <span></span>
         <input type="submit" value="SAVE" name="submit"/>
     </div>
+    <div class="form_line">
+        <div class="amended" id="amended">
+            <br><br><br>
+            <label><?php if (!empty($message)) : ?>
+                <p><?php echo $message; ?></p>
+                <!-- OK button to reset the message -->
+                <div class="okButton"><a href="amendViewDoctor.php?action=resetMessage" class="okText">OK</a></div>
+            <?php endif; ?>
+            </label>
+        </div>
+    </div>
 </form>
 
-<script src="../../Doctor/AmendViewDoctor/amendViewDoctor.js"></script>
+<script src="amendViewDoctor.js"></script>
 </body>
 </html>
