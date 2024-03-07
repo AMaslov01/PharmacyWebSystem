@@ -110,7 +110,7 @@ mysqli_close($con);
     </div>
 </div>
 
-<form action="addedDoctor.php" method="post" onsubmit="return validateForm()">
+<form method="post" onsubmit="return validateForm()">
     <div class="form_line">
         <label for="surname">SURNAME</label>
         <input type="text" id="surname" name="surname" pattern="[A-Za-z]+" required>

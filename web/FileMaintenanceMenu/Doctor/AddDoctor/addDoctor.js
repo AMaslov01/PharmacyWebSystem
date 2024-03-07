@@ -21,14 +21,6 @@ function confirmChanges(){
     return confirm("Are you sure you want to make these changes?");
 }
 
-document.getElementById("supplierName").addEventListener("change", function () {
-    var select = this;
-    if (select.value !== "") {
-        select.style.backgroundColor = "#727272";
-    } else {
-        select.style.backgroundColor = "rgb(0, 146, 69)";
-    }
-});
 
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("added");
