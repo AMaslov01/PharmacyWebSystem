@@ -52,6 +52,7 @@ function populate() {
 }
 
 function toggleLock() {
+    var supplierNameInput = document.getElementById("supplierName"); // Text input or select element
     if(document.getElementById("amendViewButton").value === "AMEND") {
         document.getElementById("description").disabled = false;
         document.getElementById("costPrice").disabled = false;
@@ -62,9 +63,25 @@ function toggleLock() {
         document.getElementById("supplierName").disabled = false;
         document.getElementById("amendViewButton").value = "VIEW";
         document.getElementById("amendViewButton").style.backgroundColor = "rgb(0, 146, 69)";
-        document.getElementById("supplierDiv1").style.display = 'none';
-        document.getElementById("supplierDiv2").style.display = 'block';
+        // var supplierNameValue = supplierNameInput.value; // Get current supplier name from text input
+        document.getElementById("supplierDiv1").style.display = 'block';
+        document.getElementById("supplierDiv2").style.display = 'none';
+
+        /*
+        var selectElement = document.getElementById("supplierName"); // Now it refers to the select element
+
+        // Loop through options to find the match and set it as selected
+        for(var i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].text === supplierNameValue) {
+                selectElement.selectedIndex = i;
+                break;
+            }
+        }
+        */
+        // Not quite the solution
+        // document.getElementById("preselectedSupplier").innerHTML = document.getElementById("supplierName").value
     } else {
+        populate();
         document.getElementById("description").disabled = true;
         document.getElementById("costPrice").disabled = true;
         document.getElementById("retailPrice").disabled = true;
@@ -74,12 +91,17 @@ function toggleLock() {
         document.getElementById("supplierName").disabled = true;
         document.getElementById("amendViewButton").value = "AMEND";
         document.getElementById("amendViewButton").style.backgroundColor = "#727272";
-        document.getElementById("supplierDiv2").style.display = 'none';
         document.getElementById("supplierDiv1").style.display = 'block';
+        document.getElementById("supplierDiv2").style.display = 'none';
         // TODO: make it so that correct supplier name is preselected
-        document.getElementById("preselectedSupplier").value = "SUPPLIER"
+        // document.getElementById("preselectedSupplier").value = "SUPPLIER"
         //document.getElementById("supplierDiv2").value = document.getElementById("supplierDiv1").value;
     }
+}
+
+function changeSelect() {
+    document.getElementById("supplierDiv1").style.display = 'none';
+    document.getElementById("supplierDiv2").style.display = 'block';
 }
 
 /*
@@ -135,6 +157,7 @@ function toggleSupplierField(isAmend) {
 }
 */
 
+// When the page is loaded:...
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("amended");
     //var body = document.getElementsByTagName("body");
@@ -146,6 +169,20 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         //body.style.height = "1000px";
         messageDiv.style.display = "none"; // Hide div if no message
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Assuming you want to set it to a specific value that you've obtained from somewhere
+    var desiredValue = document.getElementById("supplierName").value;
+
+    // Set the selected option
+    var selectElement = document.getElementById("supplierName");
+    for(var i=0; i < selectElement.options.length; i++) {
+        if(selectElement.options[i].value === desiredValue) {
+            selectElement.selectedIndex = i;
+            break;
+        }
     }
 });
 

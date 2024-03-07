@@ -199,28 +199,41 @@ input:valid {
 }
 
 .deleted {
-    position: absolute;
-    left: 150px;
-    top: 150px;
-    color: white;
-    font-size: 54px;
-    font-weight: 800;
+    display: none;
+    font-size: 36px;
+    font-weight: 600;
 }
 
-.goback {
-    position: absolute;
-    top: 500px;
-    border: 5px white solid;
-    border-radius: 8px;
+.okText {
+    all: none;
     color: white;
-    font-size: 64px;
-    font-weight: normal;
+    padding-top: 20px;
+    line-height: 50px;
+}
+
+.okText:hover {
+    font-weight: 400;
     transition-duration: .1s;
 }
 
+.okButton {
+    position: absolute;
+    left: 45%;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: -20px;
+    width: 195px;
+    height: 45px;
+    border-radius: 8px;
+    border: 3px white solid;
+    cursor: pointer;
+    background-color: rgb(0,146,69);
+    transition-duration: .1s;
+    text-align: center;
+}
 
-.goback:hover {
-    font-weight: 800;
-    border: 7px white solid;
+.okButton:hover {
+    opacity: 0.9;
+    font-size: 28px;
     transition-duration: .1s;
 }

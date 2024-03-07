@@ -34,7 +34,7 @@
         $sql = "INSERT INTO Stock (StockID, description, costPrice, retailPrice, reorderLevel, reorderQuantity, supplierID, supplierStockCode, quantityInStock) VALUES ('$newStockID', '$description', '$costPrice', '$retailPrice', '$reorderLevel', '$reorderQuantity', '$supplierID', '$supplierStockCode', 0)";
 
         if (mysqli_query($con, $sql)) {
-            $message = "A NEW STOCK ITEM HAS BEEN ADDED. ID: $maxStockID";
+            $message = "A NEW STOCK ITEM HAS BEEN ADDED. ID: $newStockID";
         } else {
             $message = "An Error in the SQL Query: " . mysqli_error($con);
         }
@@ -72,7 +72,7 @@
             </div>
 
             <div class="page_name">
-                <p class="page">ADD STOCK ITEM FORM</p>
+                <p class="page">ADD STOCK ITEM</p>
             </div>
 
             <div class="links" id="links">

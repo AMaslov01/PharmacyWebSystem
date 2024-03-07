@@ -24,8 +24,11 @@
                 WHERE stockID = '{$_POST['stockItemDescription']}'";
 
         if (mysqli_query($con, $sql)) {
-            $message = "RECORD UPDATED SUCCESSFULLY. ID: ".$_POST['stockItemDescription'];
-            //die("An Error in the SQL Query: " . mysqli_error($con)); // Displaying error message if query execution fails
+            if (mysqli_affected_rows($con) > 0) {
+                $message = "RECORD UPDATED SUCCESSFULLY. ID: ".$_POST['stockItemDescription'];
+            } else {
+                $message = "NO CHANGES WERE MADE TO THE RECORD. ID: ".$_POST['stockItemDescription'];
+            }
         } else {
             $message = "An Error in the SQL Query: " . mysqli_error($con);
         }
@@ -97,7 +100,7 @@
 
         <form method="post" onsubmit="return validateForm()">
             <div class="form_line">
-                <label for="stockItemDescription">SELECT STOCK ITEM</label>
+                <label for="stockItemDescription">SELECT DESCRIPTION</label>
                 <select name="stockItemDescription" id="stockItemDescription" onclick="populate()" required>
                     <option value="">Select a stock item</option>
                     <?php
@@ -172,7 +175,7 @@
             <div class="supplierDiv1" id="supplierDiv1">
                 <div class="form_line">
                     <label for="supplierName">SUPPLIER NAME</label>
-                    <input type="text" id="supplierName" name="supplierName" pattern="[0-9A-Za-z., ]+" required disabled>
+                    <input type="text" id="supplierName" name="supplierName" pattern="[0-9A-Za-z., ]+" onclick="changeSelect()" required disabled>
                 </div>
             </div>
 
@@ -191,7 +194,12 @@
 
                         if ($result) {
                             while ($row = mysqli_fetch_assoc($result)) {
-                                echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
+                                // Does not preselect, can use just echo from else
+                                if ($row['supplierID'] == $supplierID) {
+                                    echo '<option value="'.$row['supplierID'].'" selected>'.$row['supplierName'].'</option>';
+                                } else {
+                                    echo '<option value="'.$row['supplierID'].'">'.$row['supplierName'].'</option>';
+                                }
                             }
                         } else {
                             echo '<option value="">Failed to load suppliers</option>';

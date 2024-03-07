@@ -45,6 +45,20 @@ function populate() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    var messageDiv = document.getElementById("deleted");
+    //var body = document.getElementsByTagName("body");
+    var message = messageDiv.textContent || messageDiv.innerText;
+    if (message.trim().length > 1) {
+        //body.style.height = "1400px";
+        messageDiv.style.display = "block"; // Make sure the div is visible
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        //body.style.height = "1000px";
+        messageDiv.style.display = "none"; // Hide div if no message
+    }
+});
+
 function confirmChanges(){
     return confirm("Are you sure you want to delete this item?"); // Display confirmation dialog and return user's choice
 }

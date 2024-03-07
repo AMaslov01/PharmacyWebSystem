@@ -1,3 +1,42 @@
+<?php
+    session_start(); // Start the session
+    include '../../../db.inc.php';
+
+    // Check if the reset action is requested
+    if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+        unset($_SESSION['form_submitted']);
+        // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+        header('Location: deleteStockItem.php');
+        exit;
+    }
+
+    $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+        $sql = "UPDATE stock SET isDeleted = '1' WHERE stockID = '{$_POST['stockItemDescription']}'";
+
+        if (mysqli_query($con, $sql)) {
+            if (mysqli_affected_rows($con) > 0) {
+                $message = "RECORD DELETED SUCCESSFULLY. ID: ".$_POST['stockItemDescription'];
+            } else {
+                $message = "NO CHANGES WERE MADE TO THE RECORD. ID: ".$_POST['stockItemDescription'];
+            }
+        } else {
+            $message = "An Error in the SQL Query: " . mysqli_error($con);
+        }
+
+        $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+    } elseif (isset($_SESSION['form_submitted'])) {
+        $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+        unset($_SESSION['form_submitted']);
+        $message = '';
+    }
+
+    mysqli_close($con);
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -50,7 +89,7 @@
             </div>
         </div>
 
-        <form action="deletedStockItem.php" method="post" onsubmit="return validateForm()">
+        <form method="post" onsubmit="return validateForm()">
             <div class="form_line">
                 <label for="stockItemDescription">SELECT STOCK ITEM</label>
                 <select name="stockItemDescription" id="stockItemDescription" onclick="populate()" required>
@@ -101,7 +140,7 @@
 
             <div class="form_line">
             <label for="costPrice">COST PRICE</label>
-                <input type="number" id="costPrice" name="costPrice" min="1" required disabled>
+                <input type="number" id="costPrice" name="costPrice" min="0.01" step=".01" required disabled>
             </div>
 
             <div class="form_line">
@@ -112,6 +151,18 @@
             <div class="form_line">
                 <span></span>
                 <input type="submit" value="DELETE" id="deleteButton"/>
+            </div>
+
+            <!-- The purpose of the okButton is to basically reload the page without resubmitting the form. This is achieved by sending a specific query parameter when the "OK" button is clicked, which the PHP script checks for at the beginning of the page load to reset the session and message, which make it possible for further successful amending -->
+            <div class="form_line">
+                <div class="deleted" id="deleted">
+                    <br><br><br>
+                    <?php if (!empty($message)) : ?>
+                        <p><?php echo $message; ?></p>
+                        <!-- OK button to reset the message -->
+                        <div class="okButton"><a href="deleteStockItem.php?action=resetMessage" class="okText">OK</a></div>
+                    <?php endif; ?>
+                </div>
             </div>
         </form>
 
