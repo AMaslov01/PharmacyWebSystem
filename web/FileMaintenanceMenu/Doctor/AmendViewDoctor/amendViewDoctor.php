@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 session_start(); // Start the session
 include '../../../db.inc.php';
 
@@ -15,19 +17,19 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
     $sql = "UPDATE Doctor SET   
                     doctorSurname = '{$_POST['surname']}',
-                    doctorFirtsname = '{$_POST['firstName']}',
+                    doctorFirstname = '{$_POST['firstName']}',
                     surgeryAddress = '{$_POST['surgeryAddress']}',
                     surgeryEircode = '{$_POST['surgeryEircode']}',
                     surgeryTelephoneNumber = '{$_POST['surgeryTelephoneNumber']}',
                     mobileTelephoneNumber = '{$_POST['mobileTelephoneNumber']}',
                     homeAddress = '{$_POST['homeAddress']}',
                     homeEircode = '{$_POST['homeEircode']}',
-                    homeTelephoneNumber = '{$_POST['homeTelephoneNumber']}', 
+                    homeTelephoneNumber = '{$_POST['homeTelephoneNumber']}' 
                     WHERE doctorID = '{$_POST['doctorDescription']}'";
 
     if (mysqli_query($con, $sql)) {
         $message = "RECORD UPDATED SUCCESSFULLY. ID: ".$_POST['doctorDescription'];
-        //die("An Error in the SQL Query: " . mysqli_error($con)); // Displaying error message if query execution fails
+
     } else {
         $message = "An Error in the SQL Query: " . mysqli_error($con);
     }
@@ -97,7 +99,7 @@ mysqli_close($con);
     </div>
 </div>
 
-<form method="post" onsubmit="return validateForm()">
+<form action="amendViewDoctor.php" method="post" onsubmit="return validateForm()">
     <div class="form_line">
         <label for="doctorDescription">SELECT DOCTOR</label>
         <select name="doctorDescription" id="doctorDescription" onclick="populate()" required>
@@ -136,7 +138,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="surname">DOCTOR ID</label>
-        <input type="text" id="doctorID" name=doctorID pattern="[A-Za-z]+" required disabled>
+        <input type="text" id="doctorID" name=doctorID required disabled>
     </div>
 
     <div class="form_line">
@@ -161,12 +163,12 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="surgeryTelephoneNumber">SURGERY TELEPHONE NUMBER</label>
-        <input type="text" id="surgeryTelephoneNumber" name="surgeryTelephoneNumber" pattern="^[\d\s()-]+$" required disabled>
+        <input type="text" id="surgeryTelephoneNumber" name="surgeryTelephoneNumber" pattern="[0-9\s+\-]+" required disabled>
     </div>
 
     <div class="form_line">
         <label for="mobileTelephoneNumber">MOBILE TELEPHONE NUMBER</label>
-        <input type="text" id="mobileTelephoneNumber" name="mobileTelephoneNumber" pattern="^[\d\s()-]+$" required disabled>
+        <input type="text" id="mobileTelephoneNumber" name="mobileTelephoneNumber" pattern="[0-9\s+\-]+" required disabled>
     </div>
 
     <div class="form_line">
@@ -181,7 +183,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="homeTelephoneNumber">HOME TELEPHONE NUMBER</label>
-        <input type="text" id="homeTelephoneNumber" name="homeTelephoneNumber" pattern="^[\d\s()-]+$" required disabled>
+        <input type="text" id="homeTelephoneNumber" name="homeTelephoneNumber" pattern="[0-9\s+\-]+" required disabled>
     </div>
 
 
@@ -192,15 +194,16 @@ mysqli_close($con);
     <div class="form_line">
         <div class="amended" id="amended">
             <br><br><br>
-            <?php if (!empty($message)) : ?>
+            <label><?php if (!empty($message)) : ?>
                 <p><?php echo $message; ?></p>
                 <!-- OK button to reset the message -->
                 <div class="okButton"><a href="amendViewDoctor.php?action=resetMessage" class="okText">OK</a></div>
             <?php endif; ?>
+            </label>
         </div>
     </div>
 </form>
 
-<script src="../../Doctor/AmendViewDoctor/amendViewDoctor.js"></script>
+<script src="amendViewDoctor.js"></script>
 </body>
 </html>

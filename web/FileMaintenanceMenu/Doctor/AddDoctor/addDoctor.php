@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted']))
     $newDoctorID = $maxDoctorID + 1;
 
     $doctorSurname = $_POST['surname'];
-    $doctorFirtsname = $_POST['firstName'];
+    $doctorFirstname = $_POST['firstName'];
     $surgeryAddress = $_POST['surgeryAddress'];
     $surgeryEircode = $_POST['surgeryEircode'];
     $surgeryTelephoneNumber = $_POST['surgeryTelephoneNumber'];
@@ -133,12 +133,12 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="surgeryTelephoneNumber">SURGERY TELEPHONE NUMBER</label>
-        <input type="text" id="surgeryTelephoneNumber" name="surgeryTelephoneNumber" pattern="^[\d\s()-]+$" required>
+        <input type="text" id="surgeryTelephoneNumber" name="surgeryTelephoneNumber" pattern="[0-9\s+\-]+" required>
     </div>
 
     <div class="form_line">
         <label for="mobileTelephoneNumber">MOBILE TELEPHONE NUMBER</label>
-        <input type="text" id="mobileTelephoneNumber" name="mobileTelephoneNumber" pattern="^[\d\s()-]+$" required>
+        <input type="text" id="mobileTelephoneNumber" name="mobileTelephoneNumber" pattern="[0-9\s+\-]+" required>
     </div>
 
     <div class="form_line">
@@ -153,7 +153,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="homeTelephoneNumber">HOME TELEPHONE NUMBER</label>
-        <input type="text" id="homeTelephoneNumber" name="homeTelephoneNumber" pattern="^[\d\s()-]+$" required>
+        <input type="text" id="homeTelephoneNumber" name="homeTelephoneNumber" pattern="[0-9\s+\-]+" required>
     </div>
 
     <div class="form_line">

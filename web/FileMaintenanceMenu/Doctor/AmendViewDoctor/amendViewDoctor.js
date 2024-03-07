@@ -42,7 +42,6 @@ function populate() {
 
     } else {
         var doctorDetails = details.split(',');
-        console.log(doctorDetails);
         document.getElementById("doctorID").value = doctorDetails[0];
         document.getElementById("surname").value = doctorDetails[1];
         document.getElementById("firstName").value = doctorDetails[2];
@@ -84,6 +83,17 @@ function toggleLock() {
     }
 }
 
+document.addEventListener("DOMContentLoaded", function() {
+    var messageDiv = document.getElementById("amended");
+    var message = messageDiv.textContent || messageDiv.innerText;
+    if (message.trim().length > 1) {
+        messageDiv.style.display = "block"; // Make sure the div is visible
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+        messageDiv.style.display = "none"; // Hide div if no message
+    }
+});
+
 function confirmChanges(){
     return confirm("Are you sure you want to make these changes?"); // Display confirmation dialog and return user's choice
 }
@@ -95,13 +105,3 @@ function validateForm(){
     return confirmChanges();
 
 }
-document.addEventListener("DOMContentLoaded", function() {
-    var messageDiv = document.getElementById("amended");
-    var message = messageDiv.textContent || messageDiv.innerText;
-    if (message.trim().length > 1) {
-        messageDiv.style.display = "block"; // Make sure the div is visible
-        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-        messageDiv.style.display = "none"; // Hide div if no message
-    }
-});
