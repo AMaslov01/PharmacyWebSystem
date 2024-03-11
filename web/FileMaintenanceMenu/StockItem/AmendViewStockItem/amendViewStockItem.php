@@ -228,7 +228,6 @@
                 </div>
             </div>
         </form>
-
         <script src="amendViewStockItem.js"></script>
     </body>
 </html>

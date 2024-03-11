@@ -107,7 +107,6 @@
                     }
 
                     // data-details is used to store all the details of each stock item as a single string within the HTML <option> elements, while $details is a PHP variable used to construct this string. JavaScript then retrieves this string from the selected <option> element and splits it to populate the form fields with the appropriate details.
-
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
                             // Combine all relevant details with a delimiter (comma)
@@ -165,7 +164,6 @@
                 </div>
             </div>
         </form>
-
         <script src="deleteStockItem.js"></script>
     </body>
 </html>

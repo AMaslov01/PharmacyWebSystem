@@ -179,9 +179,7 @@
                     </label>
                 </div>
             </div>
-
         </form>
-
         <script src="addStockItem.js"></script>
     </body>
 </html>

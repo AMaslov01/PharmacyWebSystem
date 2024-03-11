@@ -66,20 +66,6 @@ function toggleLock() {
         // var supplierNameValue = supplierNameInput.value; // Get current supplier name from text input
         document.getElementById("supplierDiv1").style.display = 'block';
         document.getElementById("supplierDiv2").style.display = 'none';
-
-        /*
-        var selectElement = document.getElementById("supplierName"); // Now it refers to the select element
-
-        // Loop through options to find the match and set it as selected
-        for(var i = 0; i < selectElement.options.length; i++) {
-            if (selectElement.options[i].text === supplierNameValue) {
-                selectElement.selectedIndex = i;
-                break;
-            }
-        }
-        */
-        // Not quite the solution
-        // document.getElementById("preselectedSupplier").innerHTML = document.getElementById("supplierName").value
     } else {
         populate();
         document.getElementById("description").disabled = true;
@@ -93,9 +79,6 @@ function toggleLock() {
         document.getElementById("amendViewButton").style.backgroundColor = "#727272";
         document.getElementById("supplierDiv1").style.display = 'block';
         document.getElementById("supplierDiv2").style.display = 'none';
-        // TODO: make it so that correct supplier name is preselected
-        // document.getElementById("preselectedSupplier").value = "SUPPLIER"
-        //document.getElementById("supplierDiv2").value = document.getElementById("supplierDiv1").value;
     }
 }
 
@@ -103,59 +86,6 @@ function changeSelect() {
     document.getElementById("supplierDiv1").style.display = 'none';
     document.getElementById("supplierDiv2").style.display = 'block';
 }
-
-/*
-function toggleSupplierField(isAmend) {
-    var parentDiv = document.getElementById('supplierField'); // Assuming you wrap your supplier name field in a div with id="supplierField"
-    parentDiv.innerHTML = ''; // Clear the current field
-
-    if (isAmend) {
-        // Create and append the input field
-        var input = document.createElement('input');
-        input.type = 'text';
-        input.id = 'supplierName';
-        input.name = 'supplierName';
-        input.pattern = '[0-9A-Za-z., ]+';
-        input.required = true;
-        parentDiv.appendChild(input);
-    } else {
-        // Create and append the select dropdown
-        var select = document.createElement('select');
-        select.id = 'supplierName';
-        select.name = 'supplierName';
-        select.required = true;
-
-        // Option placeholder
-        var defaultOption = document.createElement('option');
-        defaultOption.value = '';
-        defaultOption.textContent = 'Select a supplier';
-        select.appendChild(defaultOption);
-        var suppliers;
-        // Fetch and append supplier options
-        <?php
-        echo "var suppliers = [";
-        include '../../../db.inc.php'; // Adjust the path as necessary
-        $sql = "SELECT supplierID, supplierName FROM supplier ORDER BY supplierName ASC";
-        if ($result = mysqli_query($con, $sql)) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                echo "{id: '{$row['supplierID']}', name: '{$row['supplierName']}'},";
-            }
-        }
-        echo "];";
-        mysqli_close($con);
-        ?>
-
-        suppliers.forEach(function(supplier) {
-            var option = document.createElement('option');
-            option.value = supplier.id;
-            option.textContent = supplier.name;
-            select.appendChild(option);
-        });
-
-        parentDiv.appendChild(select);
-    }
-}
-*/
 
 // When the page is loaded:...
 document.addEventListener("DOMContentLoaded", function() {
