@@ -97,18 +97,26 @@
                     <?php
                     include '../../../db.inc.php'; // Adjust the path as necessary
 
-                    $sql = "SELECT stockID, description, quantityInStock, costPrice, supplierName, reorderQuantity 
+                    $sql = "SELECT stock.stockID, description, quantityInStock, costPrice, supplierName
                         FROM stock 
                         JOIN supplier ON stock.supplierID = supplier.supplierID 
                         WHERE stock.isDeleted = 0
                         ORDER BY description ASC";
-                    if (!empty($con)) {
-                        $result = mysqli_query($con, $sql);
-                    }
 
-                    // data-details is used to store all the details of each stock item as a single string within the HTML <option> elements, while $details is a PHP variable used to construct this string. JavaScript then retrieves this string from the selected <option> element and splits it to populate the form fields with the appropriate details.
+                    $result = mysqli_query($con, $sql);
+
                     if ($result) {
                         while ($row = mysqli_fetch_assoc($result)) {
+                            // Query the order_to_stock table for each stock item
+                            $stockID = $row['stockID'];
+                            $orderSql = "SELECT COUNT(*) AS orderCount FROM order_to_stock WHERE stockID = '{$stockID}'";
+                            $orderResult = mysqli_query($con, $orderSql);
+                            $orderRow = mysqli_fetch_assoc($orderResult);
+                            $orderCount = $orderRow['orderCount'];
+
+                            // Append the orderCount to the row details
+                            $row['orderCount'] = $orderCount;
+
                             // Combine all relevant details with a delimiter (comma)
                             $details = implode(',', $row);
                             echo '<option value="'.$row['stockID'].'" data-details="'.$details.'">'.$row['description'].'</option>';
@@ -119,6 +127,7 @@
 
                     mysqli_close($con);
                     ?>
+
                 </select>
             </div>
 
