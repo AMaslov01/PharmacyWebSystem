@@ -1,5 +1,5 @@
 body {
-    font-family: "JetBrainsMono-Regular";
+    font-family: "JetBrains Mono";
     background-color: #727272;
     height: 1200px;
     padding: 0;
@@ -198,14 +198,7 @@ input:valid {
     background-color: #727272;
 }
 
-.deleted {
-    position: absolute;
-    left: 150px;
-    top: 150px;
-    color: white;
-    font-size: 54px;
-    font-weight: 800;
-}
+
 
 .goback {
     position: absolute;
@@ -222,5 +215,44 @@ input:valid {
 .goback:hover {
     font-weight: 800;
     border: 7px white solid;
+    transition-duration: .1s;
+}
+.deleted {
+    display: none;
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.okText {
+    all: none;
+    color: white;
+    padding-top: 20px;
+    line-height: 50px;
+}
+
+.okText:hover {
+    font-weight: 400;
+    transition-duration: .1s;
+}
+
+.okButton {
+    position: absolute;
+    left: 45%;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: -20px;
+    width: 195px;
+    height: 45px;
+    border-radius: 8px;
+    border: 3px white solid;
+    cursor: pointer;
+    background-color: rgb(0,146,69);
+    transition-duration: .1s;
+    text-align: center;
+}
+
+.okButton:hover {
+    opacity: 0.9;
+    font-size: 28px;
     transition-duration: .1s;
 }
