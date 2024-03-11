@@ -1,3 +1,42 @@
+<?php
+session_start(); // Start the session
+include '../../../db.inc.php';
+
+// Check if the reset action is requested
+if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
+    unset($_SESSION['form_submitted']);
+    // Redirect to the same page without the query parameter to avoid accidental resets on refresh
+    header('Location: deleteDoctor.php');
+    exit;
+}
+
+$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+    $sql = "UPDATE Doctor SET isDeleted = '1' WHERE doctorID = '{$_POST['doctorDescription']}'";
+
+    if (mysqli_query($con, $sql)) {
+        if (mysqli_affected_rows($con) > 0) {
+            $message = "RECORD DELETED SUCCESSFULLY. ID: ".$_POST['doctorDescription'];
+        } else {
+            $message = "NO CHANGES WERE MADE TO THE RECORD. ID: ".$_POST['doctorDescription'];
+        }
+    } else {
+        $message = "An Error in the SQL Query: " . mysqli_error($con);
+    }
+
+    $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+} elseif (isset($_SESSION['form_submitted'])) {
+    $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+}
+
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    unset($_SESSION['form_submitted']);
+    $message = '';
+}
+
+mysqli_close($con);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,7 +89,7 @@
     </div>
 </div>
 
-<form action="deletedDoctor.php" method="post" onsubmit="return validateForm()">
+<form method="post" onsubmit="return validateForm()">
     <div class="form_line">
         <label for="doctorDescription">SELECT DOCTOR</label>
         <select name="doctorDescription" id="doctorDescription" onclick="populate()" required>
@@ -83,6 +122,11 @@
             mysqli_close($con);
             ?>
         </select>
+    </div>
+
+    <div class="form_line">
+        <label for="surname">DOCTOR ID</label>
+        <input type="text" id="doctorID" name=doctorID required disabled>
     </div>
 
     <div class="form_line">
@@ -133,6 +177,16 @@
     <div class="form_line">
         <span></span>
         <input type="submit" value="DELETE" id="deleteButton"/>
+    </div>
+    <div class="form_line">
+        <div class="deleted" id="deleted">
+            <br><br><br>
+            <?php if (!empty($message)) : ?>
+                <p><?php echo $message; ?></p>
+                <!-- OK button to reset the message -->
+                <div class="okButton"><a href="deleteDoctor.php?action=resetMessage" class="okText">OK</a></div>
+            <?php endif; ?>
+        </div>
     </div>
 </form>
 
