@@ -124,12 +124,13 @@ a:hover {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 50px;
 }
 
 form {
     position: relative;
     margin: auto;
-    height: 600px;
+    height: auto;
     top: 200px;
     color: white;
     width: 70%;
@@ -141,8 +142,11 @@ label {
     font-weight: 600;
 }
 
+
+
 input[type="text"],
 input[type="number"],
+input[type="date"],
 select {
     font-family: "JetBrains Mono";
     color: white;
@@ -157,28 +161,7 @@ select {
     border-radius: 8px;
 }
 
-input[type="button"] {
-    font-family: "JetBrains Mono";
-    color: white;
-    font-size: 36px;
-    font-weight: 600;
-    border: 3px white solid;
-    border-radius: 8px;
-    background-color: #727272;
-    margin-bottom: 30px;
-    margin-top: 10px;
-    transition-duration: .1s;
-    width: 155px;
-    height: 75px;
-    text-align: center;
-}
 
-input[type="button"]:hover {
-    font-weight: 800;
-    font-size: 40px;
-    border: 5px white solid;
-    transition-duration: .1s;
-}
 
 select {
     width: 825px;
@@ -197,8 +180,21 @@ input::placeholder {
 input:valid {
     background-color: #727272;
 }
-
-input[type="submit"] {
+input[type="button"] {
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 50px;
+    width: auto;
+    height: 50px;
+    border-radius: 8px;
+    border: 3px white solid;
+    cursor: pointer;
+    background-color: rgb(0,146,69);
+    transition-duration: .1s;
+}
+input[type="submit"], input[type="reset"]{
     font-family: "JetBrains Mono";
     color: white;
     font-size: 24px;
@@ -213,9 +209,13 @@ input[type="submit"] {
     transition-duration: .1s;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover {
+input[type="reset"] {
+    background-color: #727272;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
     opacity: 0.9;
-    font-size: 28px;
+    font-size: 26px;
     transition-duration: .1s;
 }
 
@@ -250,4 +250,40 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     pointer-events: none; /* Disable pointer events */
     opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
 }
+
+p{
+    font-size: 25px;
+}
+/* CSS for table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* CSS for table header */
+th {
+    background-color: #727272;
+    color: white;
+    text-align: left;
+    padding: 8px;
+    font-size: 24px; /* Font size increased to 24px */
+}
+
+
+
+/* CSS for table data */
+td {
+    border-bottom: 1px solid #ddd;
+    padding: 4px; /* Reduced padding to make columns closer */
+    color: white;
+    font-size: 24px; /* Font size increased to 24px */
+}
+
+
+
+
+
+
 
