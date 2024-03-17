@@ -6,7 +6,7 @@
     if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
         unset($_SESSION['form_submitted']);
         // Redirect to the same page without the query parameter to avoid accidental resets on refresh
-        header('Location: amendViewStockItem.php');
+        header('Location: dispenseDrugs.php');
         exit;
     }
 

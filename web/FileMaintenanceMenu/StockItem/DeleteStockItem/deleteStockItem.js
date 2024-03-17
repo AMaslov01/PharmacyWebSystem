@@ -43,6 +43,8 @@ function populate() {
         document.getElementById("costPrice").value = stockDetails[3];
         document.getElementById("supplierName").value = stockDetails[4];
     }
+
+    console.log(stockDetails[5]);
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -68,7 +70,7 @@ function validateForm(){
     var details = sel.options[sel.selectedIndex].getAttribute("data-details");
     var stockDetails = details.split(',');
 
-    if(stockDetails[2] > 0 && stockDetails[5] > 0) {
+    if(stockDetails[2] > 0 || stockDetails[5] > 0) {
         alert("You can not delete this item");
         return false;
     }

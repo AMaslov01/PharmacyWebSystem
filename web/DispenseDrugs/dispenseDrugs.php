@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="dispenseDrugs.css">
-        <title>Delete Stock Item</title>
+        <title>Dispense Drugs</title>
     </head>
     <body>
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="link" style="top: 0; left: 820px">
-                    <a href="../FileMaintenanceMenu/fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
+                    <a href="../../fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
                 </div>
 
                 <div class="link" style="top: 50px; left: 820px">
@@ -46,22 +46,23 @@
             </div>
 
             <div class="logout">
-                <a href="../logIn.html"><img src="../Resources/logout3.png" width="160px" height="160px" alt="logo"></a>
+                <a href="../../../logIn.html"><img src="../../../Resources/logout3.png" width="160px" height="160px" alt="logo"></a>
             </div>
         </div>
 
-        <form action="dispensedDrugs.php" method="post" onsubmit="return validateForm()">
+        <form method="post" onsubmit="return validateForm()">
             <div class="form_line">
-                <label for="customerDescription">SELECT CUSTOMER</label>
+                <label for="customerDescription">SELECT NAME</label>
                 <select name="customerDescription" id="customerDescription" onclick="populate()" required>
                     <option value="">Select a customer</option>
                     <?php
-                    include '../db.inc.php'; // Adjust the path as necessary
+                    include '../../../db.inc.php'; // Adjust the path as necessary
+                    date_default_timezone_set("UTC"); // Setting default timezone to UTC
 
-                    $sql = "SELECT customerID, customerName, address, dateOfBirth 
+                    $sql = "SELECT customerID, customerSurname, customerName, address, dateOfBirth
                         FROM customer 
                         WHERE customer.isDeleted = 0
-                        ORDER BY customerName ASC";
+                        ORDER BY customerName";
                     if (!empty($con)) {
                         $result = mysqli_query($con, $sql);
                     }
@@ -72,10 +73,10 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                             // Combine all relevant details with a delimiter (comma)
                             $details = implode(',', $row);
-                            echo '<option value="'.$row['customerID'].'" data-details="'.$details.'">'.$row['customerName'].'</option>';
+                            echo '<option value="'.$row['customerID'].'" data-details="'.$details.'">'.$row['customerSurname'] . $row['customerName'].'</option>';
                         }
                     } else {
-                        echo '<option value="">Failed to load stock items</option>';
+                        echo '<option value="">Failed to load customers</option>';
                     }
 
                     mysqli_close($con);
@@ -84,31 +85,42 @@
             </div>
 
             <div class="form_line" style="margin-top: 30px;">
-                <label for="customerID">CUSTOMER ID</label>
-                <input type="number" id="customerID" name="customerID" pattern="[0-9]+" required disabled>
+                <label for="customerName">FIRST NAME</label>
+                <input type="text" id="customerName" name="customerName" required disabled>
             </div>
 
-            <div class="form_line">
-                <label for="customerName">CUSTOMER NAME</label>
-                <input type="text" id="customerName" name="customerName" pattern="[A-Za-z., ]+" required disabled>
+            <div class="form_line" style="margin-top: 30px;">
+                <label for="customerSurname">LAST NAME</label>
+                <input type="text" id="customerSurname" name="customerSurname" required disabled>
             </div>
 
-            <div class="form_line">
+            <div class="form_line" style="margin-top: 30px;">
                 <label for="address">ADDRESS</label>
-                <input type="text" id="address" name="address" pattern="[0-9A-Za-z., ]+" required disabled>
+                <input type="text" id="address" name="address" required disabled>
             </div>
 
-            <div class="form_line">
-            <label for="dateOfBirth">DATE OF BIRTH</label>
-                <input type="text" id="dateOfBirth" name="dateOfBirth" pattern="[0-9A-Za-z., ]+" required disabled>
+            <div class="form_line" style="margin-top: 30px;">
+                <label for="dateOfBirth">DATE OF BIRTH</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" required disabled>
             </div>
 
             <div class="form_line">
                 <span></span>
-                <input type="submit" value="DELETE" id="deleteButton"/>
+                <input type="submit" value="SAVE" name="submit"/>
+            </div>
+
+            <!-- The purpose of the okButton is to basically reload the page without resubmitting the form. This is achieved by sending a specific query parameter when the "OK" button is clicked, which the PHP script checks for at the beginning of the page load to reset the session and message, which make it possible for further successful amending -->
+            <div class="form_line">
+                <div class="amended" id="amended">
+                    <br><br><br>
+                    <?php if (!empty($message)) : ?>
+                        <p><?php echo $message; ?></p>
+                        <!-- OK button to reset the message -->
+                        <div class="okButton"><a href="dispenseDrugs.php?action=resetMessage" class="okText">OK</a></div>
+                    <?php endif; ?>
+                </div>
             </div>
         </form>
-
         <script src="dispenseDrugs.js"></script>
     </body>
 </html>

@@ -13,7 +13,7 @@ document.getElementById('menu_button').addEventListener('click', function() {
     }
 });
 
-document.getElementById("stockItemDescription").addEventListener("change", function () {
+document.getElementById("customerDescription").addEventListener("change", function () {
     var select = this;
     if (select.value !== "") {
         select.style.backgroundColor = "#727272";
@@ -29,32 +29,26 @@ function populate() {
 
     if (result === "") {
         // Clear all fields if no stock item is selected
-        document.getElementById("customerID").value = "";
         document.getElementById("customerName").value = "";
+        document.getElementById("customerSurname").value = "";
         document.getElementById("address").value = "";
         document.getElementById("dateOfBirth").value = "";
     } else {
         // Split the details using the delimiter (comma)
-        var stockDetails = details.split(',');
-        document.getElementById("customerID").value = stockDetails[0];
-        document.getElementById("customerName").value = stockDetails[1];
-        document.getElementById("address").value = stockDetails[2];
-        document.getElementById("dateOfBirth").value = stockDetails[3];
+        var customerDetails = details.split(',');
+        document.getElementById("customerName").value = customerDetails[0];
+        document.getElementById("customerSurname").value = customerDetails[1];
+        document.getElementById("address").value = customerDetails[2];
+        document.getElementById("dateOfBirth").value = customerDetails[3];
     }
 }
 
+
 function confirmChanges(){
-    return confirm("Are you sure you want to delete this item?"); // Display confirmation dialog and return user's choice
+    // May be: "Please confirm that the details are correct"
+    return confirm("Are you sure you want to make these changes?"); // Display confirmation dialog and return user's choice
 }
 
 function validateForm(){
-    var sel = document.getElementById("stockItemDescription");
-    var details = sel.options[sel.selectedIndex].getAttribute("data-details");
-    var stockDetails = details.split(',');
-
-    if(stockDetails[2] > 0 && stockDetails[5] > 0) {
-        alert("You can not delete this item");
-        return false;
-    }
     return confirmChanges();
 }
