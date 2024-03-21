@@ -215,7 +215,7 @@ input[type="reset"] {
 
 input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
     opacity: 0.9;
-    font-size: 26px;
+    font-size: 25px;
     transition-duration: .1s;
 }
 
@@ -281,7 +281,12 @@ td {
     font-size: 24px; /* Font size increased to 24px */
 }
 
-
+.disabled_button{
+    background-color: #727272;
+}
+.enabled_button{
+    background-color: rgb(0, 146, 69);
+}
 
 
 

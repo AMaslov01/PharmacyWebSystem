@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<form method="post" name="selectDetails" onsubmit="checkDates()">
+<form method="post" name="reportForm" id="reportForm" onsubmit="return checkDates()">
 
     <div class="form_line">
         <label for="customerDescription">SELECT CUSTOMER</label>
@@ -91,10 +91,13 @@
         <input type="date" id="endDatesDescription" name="endDatesDescription" style="display: none;" required >
     </div>
     <div class="form_line">
-        <input type="reset" value="CLEAR" name="reset"/>
-        <input type="submit" value="SEARCH" name="submit"/>
+        <input type="reset" value="CLEAR" name="reset">
+        <input type="submit" value="SEARCH" name="submit">
     </div>
+
+    <input type='hidden' name='choice' id="choice" value ="date">
         <?php
+
         session_start();
         error_reporting(E_ALL);
         ini_set('display_errors', 1);
@@ -110,18 +113,42 @@
 
         $message = isset($_SESSION['message']) ? $_SESSION['message'] : ''; // Retrieve message from session or set empty string
 
-        // Check if the form is submitted via POST and form submission session variable is not set
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['customerDescription'] != "default") {
+            session_destroy();
+            session_start();
             // Construct SQL query to mark doctor as deleted based on provided doctor ID
             date_default_timezone_set("UTC");
-            $date1 = date("Y-m-d", strtotime($_POST['startDatesDescription']));
-            $date2 = date("Y-m-d", strtotime($_POST['endDatesDescription']));
-            $sql = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
+            $_SESSION['date1'] = date("Y-m-d", strtotime($_POST['startDatesDescription']));
+            $date1 = $_SESSION['date1'];
+
+            $_SESSION['date2'] = date("Y-m-d", strtotime($_POST['endDatesDescription']));
+            $date2 = $_SESSION['date2'];
+            $_SESSION['customerID'] = $_POST['customerDescription'];
+            $customerID = $_SESSION['customerID'];
+            $_SESSION['sql1'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
             Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
             ON Customer.customerID = Prescription.customerID
-            WHERE Prescription.customerID = '{$_POST['customerDescription']}' AND
-            dateOfPrescription BETWEEN '$date1' AND '$date2'";
+            WHERE Prescription.customerID = '$customerID' AND
+            dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY dateOfPrescription";
+            $sql1 = $_SESSION['sql1'];
+            $_SESSION['sql2'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
+            Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
+            ON Customer.customerID = Prescription.customerID
+            WHERE Prescription.customerID = '$customerID' AND
+            dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY doctorSurname";
+            $sql2 = $_SESSION['sql2'];
+            $_SESSION['sql'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
+            Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
+            ON Customer.customerID = Prescription.customerID
+            WHERE Prescription.customerID = '$customerID' AND
+            dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY dateOfPrescription";
+            $sql = $_SESSION['sql'];
+        }
 
+        // Check if the form is submitted via POST and form submission session variable is not set
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
+
+            $sql = $_SESSION['sql'];
             if (mysqli_query($con, $sql)) {
 // Check if any rows were affected by the query
                 if (mysqli_affected_rows($con) > 0) {
@@ -133,24 +160,23 @@
             } else {
                 $message = "An Error in the SQL Query: " . mysqli_error($con); // Set error message
             }
+            $_SESSION['message'] = $message;
 
             $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
-        } elseif (isset($_SESSION['form_submitted'])) {
-            $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
         }
 
+
+
         // Clear form submission session variable if request method is not POST
-        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            unset($_SESSION['form_submitted']);
-            $message = ''; // Clear message
-        }
+
+
         function produceReport($con, $sql) {
             // Execute SQL query
             $result = mysqli_query($con, $sql);
+
             echo "
-                <input type='hidden' name='choice'>
-                <input type='button' id='dateButton' value='Date Of Prescription Order' onclick='dateOrder()'>
-                <input type='button' id='doctorButton' value='Doctor Surname Order' onclick='surnameOrder()'>
+                <input type='button' id='dateButton' class='disabled_button' value='Date Of Prescription Order' onclick='dateOrder()' >
+                <input type='button' id='doctorButton' value='Doctor Surname Order' onclick='surnameOrder()' >
                  <br><br>";
             // Output table headers
             echo "<table>
@@ -169,18 +195,53 @@
             }
             // Close table
             echo "</table>";
+           // echo"<p>entered function</p>";
         }
 
         mysqli_close($con);
         ?>
 
-    <?php
-    include '../../db.inc.php';
-    if(!empty($message)){
-        echo "<p>$message</p>";}
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"])){
-    produceReport($con, $sql);}
-    mysqli_close($con);?>
+        <?php
+        include '../../db.inc.php';
+        if(!empty($message)){
+            echo "<p>$message</p>";
+            }
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['form_submitted'])){
+            $choice = $_POST['choice'];
+            echo "<p>'$choice'</p>";
+            if($choice == 'date'){
+              //  echo "<p>first if</p>";
+                $sql1 = $_SESSION['sql1'];
+                produceReport($con, $sql1);?>
+                <script>
+                    // Disable date button if DOB order is chosen
+                    document.getElementById("dateButton").disabled = true;
+                    document.getElementById("doctorButton").disabled = false;
+                    document.getElementById("dateButton").style.background = "#727272";
+                    document.getElementById("doctorButton").style.background = "rgb(0, 146, 69)";
+                </script>
+            <?php
+            }
+            elseif($choice == 'Surname'){
+               // echo "<p>second if</p>";
+                $sql2 = $_SESSION['sql2'];
+                produceReport($con, $sql2);
+            ?>
+            <script>
+                // Disable date button if DOB order is chosen
+                document.getElementById("dateButton").disabled = false;
+                document.getElementById("doctorButton").disabled = true;
+                document.getElementById("doctorButton").style.background = "#727272";
+                document.getElementById("dateButton").style.background = "rgb(0, 146, 69)";
+            </script>
+            <?php
+//нужно кнопки вытащить из пхп иначе я вызываю функцию до окончания тега форм, обработка результатов должна быть вне формы
+            // можно вызывать еще одну форму, внутри продьюс репорт(чтоб он выводил форму) и все, но есть проблема с лвумы формами на одной странице...тогда лучше просто вывод без формы,хотя мб проблемы не будет
+        }
+        }
+
+        mysqli_close($con);
+        ?>
 </form>
 
 
