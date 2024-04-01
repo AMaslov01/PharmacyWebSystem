@@ -50,28 +50,23 @@ function populate() {
 function enableDiv() {
     var select = document.getElementById('customerDescription');
     var selectOption = select.options[selectElement.selectedIndex];
+    var startDiv = document.getElementById('startDatesDescription');
+    var endDiv = document.getElementById('endDatesDescription');
+    var startLabel = document.getElementById('startDatesLabel');
+    var endLabel = document.getElementById('endDatesLabel');
     if(selectOption.value != "default") {
-        var startDiv = document.getElementById('startDatesDescription');
-        var endDiv = document.getElementById('endDatesDescription');
-        var startLabel = document.getElementById('startDatesLabel');
-        var endLabel = document.getElementById('endDatesLabel');
-
-
-        // Check if the selected value is not the default option
-        if (select.value !== "default") {
-            console.log("done");
-            startDiv.style.display = 'block';
-            startLabel.style.display = 'block';
-            endDiv.style.display = 'block';
-            endLabel.style.display = 'block';
-
-        } else {
-            startDiv.style.display = 'none';
-            startLabel.style.display = 'none';
-            endDiv.style.display = 'none';
-            endLabel.style.display = 'none';
-
-        }
+        console.log("done");
+        startDiv.style.display = 'block';
+        startLabel.style.display = 'block';
+        endDiv.style.display = 'block';
+        endLabel.style.display = 'block';
+    }
+    else{
+        console.log("else");
+        startDiv.style.display = 'none';
+        startLabel.style.display = 'none';
+        endDiv.style.display = 'none';
+        endLabel.style.display = 'none';
     }
 }
 function checkDates(){
@@ -127,7 +122,6 @@ function dateOrder(){
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
-
 }
 
 // JavaScript function to set choice value and submit form for surname order
@@ -137,6 +131,44 @@ function surnameOrder(){
     console.log(document.reportForm.choice.value);
 
 
+    var form = document.getElementById("reportForm");
+    var submitEvent = new Event("submit");
+    form.dispatchEvent(submitEvent);
+}
+function costOrder(){
+
+    document.reportForm.choice.value = "Cost";
+    console.log(document.reportForm.choice.value);
+
+
+    var form = document.getElementById("reportForm");
+    var submitEvent = new Event("submit");
+    form.dispatchEvent(submitEvent);
+}
+
+function openButton(button){
+    document.reportForm.choice.value = button.value;
+    console.log(document.reportForm.choice.value);
+    document.getElementById("startDatesDescription").removeAttribute("required");
+    document.getElementById("endDatesDescription").removeAttribute("required");
+    var form = document.getElementById("reportForm");
+    var submitEvent = new Event("submit");
+    form.dispatchEvent(submitEvent);
+}
+function navigateBack(){
+    document.reportForm.choice.value = "nothing";
+    document.getElementById("startDatesDescription").removeAttribute("required");
+    document.getElementById("endDatesDescription").removeAttribute("required");
+    var form = document.getElementById("reportForm");
+    var submitEvent = new Event("submit");
+    form.dispatchEvent(submitEvent);
+    console.log("transfered");
+}
+function search(){
+    document.reportForm.choice.value = document.getElementById("searchById").value;
+    console.log(document.reportForm.choice.value);
+    document.getElementById("startDatesDescription").removeAttribute("required");
+    document.getElementById("endDatesDescription").removeAttribute("required");
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);

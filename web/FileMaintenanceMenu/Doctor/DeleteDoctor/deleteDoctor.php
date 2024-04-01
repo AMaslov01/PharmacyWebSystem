@@ -88,7 +88,7 @@ mysqli_close($con); // Close database connection
         </div>
 
         <div class="link" style="top: 50px; left: 820px">
-            <a style="margin: 0; color: white; font-size: 30px;" href="../ReportsMenu/reportsMenu.html">REPORTS MENU</a>
+            <a style="margin: 0; color: white; font-size: 30px;" href="/PharmacyWebSystem/web/ReportsMenu/reportsMenu.html">REPORTS MENU</a>
         </div>
         <!-- Additional links can be added here -->
     </div>

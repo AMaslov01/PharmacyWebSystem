@@ -88,7 +88,7 @@
     </div>
     <div class="form_line"  >
         <label for="endDatesDescription" style="display: none;" id="endDatesLabel">SELECT ENDING DATE</label>
-        <input type="date" id="endDatesDescription" name="endDatesDescription" style="display: none;" required >
+        <input type="date" id="endDatesDescription" name="endDatesDescription" style="display: none;"  required>
     </div>
     <div class="form_line">
         <input type="reset" value="CLEAR" name="reset">
@@ -111,7 +111,7 @@
             exit; // Terminate script execution
         }
 
-        $message = isset($_SESSION['message']) ? $_SESSION['message'] : ''; // Retrieve message from session or set empty string
+
 
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['customerDescription'] != "default") {
             session_destroy();
@@ -125,25 +125,31 @@
             $date2 = $_SESSION['date2'];
             $_SESSION['customerID'] = $_POST['customerDescription'];
             $customerID = $_SESSION['customerID'];
-            $_SESSION['sql1'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
+            $_SESSION['sql1'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname, totalCost FROM Prescription JOIN
             Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
             ON Customer.customerID = Prescription.customerID
             WHERE Prescription.customerID = '$customerID' AND
             dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY dateOfPrescription";
-            $sql1 = $_SESSION['sql1'];
-            $_SESSION['sql2'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
+
+            $_SESSION['sql2'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname, totalCost FROM Prescription JOIN
             Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
             ON Customer.customerID = Prescription.customerID
             WHERE Prescription.customerID = '$customerID' AND
             dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY doctorSurname";
-            $sql2 = $_SESSION['sql2'];
-            $_SESSION['sql'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname FROM Prescription JOIN
+
+            $_SESSION['sql3'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname, totalCost FROM Prescription JOIN
+            Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
+            ON Customer.customerID = Prescription.customerID
+            WHERE Prescription.customerID = '$customerID' AND
+            dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY totalCost";
+
+            $_SESSION['sql'] = "SELECT dateOfPrescription, prescriptionID, doctorSurname, totalCost FROM Prescription JOIN
             Doctor ON Doctor.doctorID = Prescription.doctorID JOIN Customer
             ON Customer.customerID = Prescription.customerID
             WHERE Prescription.customerID = '$customerID' AND
             dateOfPrescription BETWEEN '$date1' AND '$date2' ORDER BY dateOfPrescription";
-            $sql = $_SESSION['sql'];
         }
+        $message = isset($_SESSION['message']) ? $_SESSION['message'] : ''; // Retrieve message from session or set empty string
 
         // Check if the form is submitted via POST and form submission session variable is not set
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
@@ -173,14 +179,19 @@
         function produceReport($con, $sql) {
             // Execute SQL query
             $result = mysqli_query($con, $sql);
-
+            if (mysqli_affected_rows($con) == 0){
+                $message = "NO ENTRIES FOUND FOR PROVIDED CREDENTIALS";
+            }
+            echo "<input type='number' id='searchById' placeholder='Search by ID'>
+                   <button onclick='search()' id='searchButton'>SEARCH</button><br>";
             echo "
                 <input type='button' id='dateButton' class='disabled_button' value='Date Of Prescription Order' onclick='dateOrder()' >
                 <input type='button' id='doctorButton' value='Doctor Surname Order' onclick='surnameOrder()' >
+                <input type='button' id='costButton' value='Cost Order' onclick='costOrder()'>
                  <br><br>";
             // Output table headers
             echo "<table>
-            <tr><th>Date Of Prescription  </th><th> Prescription ID </th><th> Doctor Name </th></tr>";
+            <tr><th>Date Of Prescription  </th><th> Prescription ID </th><th> Doctor Name </th><th> Total Cost </th></tr>";
             // Loop through query results and output table rows
             while ($row = mysqli_fetch_array($result)) {
                 // Format date of birth as desired
@@ -191,11 +202,40 @@
                 <td>".$formattedDate."</td>
 				<td>".$row['prescriptionID']."</td>
 				<td>".$row['doctorSurname']."</td>
+				<td>".$row['totalCost']."</td>
+				<td><button value='".$row['prescriptionID']."' id='".$row['prescriptionID']."' onclick='openButton(this)'>OPEN</button></td>
               </tr>";
             }
             // Close table
             echo "</table>";
            // echo"<p>entered function</p>";
+        }
+        function producePrescriptionReport($con, $sql) {
+            // Execute SQL query
+            $result = mysqli_query($con, $sql);
+            // Output table headers
+            echo "<table>
+            <tr><th>Brand Name</th><th>Size of Dosage</th><th>Quantity</th><th>Frequency of Dosage</th><th>Length of Dosage</th><th>Doctor's Instructions</th></tr>";
+            // Loop through query results and output table rows
+
+            while ($row = mysqli_fetch_array($result)) {
+                // Output table row with person details
+                echo "<tr>
+				<td>".$row['drugName']."</td>
+				<td>".$row['sizeOfDosage']."</td>
+				<td>".$row['quantityOfDosage']."</td>
+				<td>".$row['frequencyOfDosage']."</td>
+				<td>".$row['lenghtOfDosage']."</td>
+				<td>".$row['instructions']."</td>
+              </tr>";
+
+            }
+            // Close table
+            echo "</table>";
+            echo"<br><br>";
+            echo"<button onclick='navigateBack()' id='back'>BACK</button>";
+
+            // echo"<p>entered function</p>";
         }
 
         mysqli_close($con);
@@ -203,13 +243,14 @@
 
         <?php
         include '../../db.inc.php';
-        if(!empty($message)){
-            echo "<p>$message</p>";
-            }
+
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['form_submitted'])){
             $choice = $_POST['choice'];
-            echo "<p>'$choice'</p>";
-            if($choice == 'date'){
+            if(!empty($message) && $choice != 'nothing'){
+                echo "<p>$message</p>";
+            }
+
+            if($choice == 'date' || $choice == 'default'){
               //  echo "<p>first if</p>";
                 $sql1 = $_SESSION['sql1'];
                 produceReport($con, $sql1);?>
@@ -217,8 +258,10 @@
                     // Disable date button if DOB order is chosen
                     document.getElementById("dateButton").disabled = true;
                     document.getElementById("doctorButton").disabled = false;
+                    document.getElementById("costButton").disabled = false;
                     document.getElementById("dateButton").style.background = "#727272";
                     document.getElementById("doctorButton").style.background = "rgb(0, 146, 69)";
+                    document.getElementById("costButton").style.background = "rgb(0, 146, 69)";
                 </script>
             <?php
             }
@@ -231,21 +274,50 @@
                 // Disable date button if DOB order is chosen
                 document.getElementById("dateButton").disabled = false;
                 document.getElementById("doctorButton").disabled = true;
+                document.getElementById("costButton").disabled = false;
                 document.getElementById("doctorButton").style.background = "#727272";
+                document.getElementById("costButton").style.background = "rgb(0, 146, 69)";
                 document.getElementById("dateButton").style.background = "rgb(0, 146, 69)";
             </script>
             <?php
+
 //нужно кнопки вытащить из пхп иначе я вызываю функцию до окончания тега форм, обработка результатов должна быть вне формы
             // можно вызывать еще одну форму, внутри продьюс репорт(чтоб он выводил форму) и все, но есть проблема с лвумы формами на одной странице...тогда лучше просто вывод без формы,хотя мб проблемы не будет
         }
+            elseif($choice == 'Cost'){
+                $sql3 = $_SESSION['sql3'];
+                produceReport($con, $sql3);
+            ?>
+                <script>
+                    // Disable date button if DOB order is chosen
+                    document.getElementById("dateButton").disabled = false;
+                    document.getElementById("doctorButton").disabled = false;
+                    document.getElementById("costButton").disabled = true;
+                    document.getElementById("doctorButton").style.background = "rgb(0, 146, 69)";
+                    document.getElementById("costButton").style.background = "#727272";
+                    document.getElementById("dateButton").style.background = "rgb(0, 146, 69)";
+                </script>
+                <?php
+            }
+            else if($choice == 'nothing'){
+
+                echo"<script>console.log('nothing');</script>";
+
+            }
+            else{
+
+                $prescriptionSql = "SELECT drugName, sizeOfDosage, quantityOfDosage, frequencyOfDosage, lenghtOfDosage, instructions FROM Drug_to_Prescription
+                WHERE prescriptionID = '$choice'";
+                producePrescriptionReport($con, $prescriptionSql);
+
+
+            }
         }
 
         mysqli_close($con);
+
         ?>
 </form>
-
-
-
 
 <script src="customerPrescriptionsReport.js"></script>
 </body>

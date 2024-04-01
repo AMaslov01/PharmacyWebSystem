@@ -194,6 +194,30 @@ input[type="button"] {
     background-color: rgb(0,146,69);
     transition-duration: .1s;
 }
+button{
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 15px;
+    background-color: rgb(0,146,69);
+    border: 2px white solid;
+    border-radius: 5px;
+}
+#back{
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 25px;
+    background-color: rgb(0,146,69);
+    border: 3px white solid;
+    border-radius: 8px;
+}
+#searchButton{
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 25px;
+    background-color: rgb(0,146,69);
+    border: 3px white solid;
+    border-radius: 8px;
+}
 input[type="submit"], input[type="reset"]{
     font-family: "JetBrains Mono";
     color: white;
