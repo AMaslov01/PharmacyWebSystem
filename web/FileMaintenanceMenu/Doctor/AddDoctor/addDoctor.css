@@ -1,3 +1,10 @@
+/*
+    Add Doctor
+    CSS for the Screen
+    C00290945 Artemiy Maslov 02.2024
+*/
+
+/* CSS styles for the body element */
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
@@ -6,12 +13,14 @@ body {
     margin: 0;
 }
 
+/* Styles for links */
 .link {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Styles for header */
 .header {
     z-index: 1;
     padding: 0;
@@ -23,6 +32,7 @@ body {
     background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%);
 }
 
+/* Styles for logo */
 .logo {
     user-select: none;
     position: absolute;
@@ -30,16 +40,19 @@ body {
     left: 10px;
 }
 
+/* Styles for logo hover */
 .logo:hover {
     transform: scale(1.05);
     transition-duration: .1s;
 }
 
+/* Styles for logo not hover */
 .logo:not(:hover) {
     transform: scale(1);
     transition-duration: .9s;
 }
 
+/* Styles for logout */
 .logout {
     user-select: none;
     position: absolute;
@@ -47,16 +60,19 @@ body {
     right: 0;
 }
 
+/* Styles for logout hover */
 .logout:hover {
     transform: scale(1.1);
     transition-duration: .1s;
 }
 
+/* Styles for logout not hover */
 .logout:not(:hover) {
     transform: scale(1);
     transition-duration: .9s;
 }
 
+/* Styles for links */
 .links {
     display: none;
     position: absolute;
@@ -66,6 +82,7 @@ body {
     top: 15px;
 }
 
+/* Styles for menu */
 .menu {
     user-select: none;
     position: fixed;
@@ -75,16 +92,19 @@ body {
     font-weight: 800;
 }
 
+/* Styles for menu hover */
 .menu:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
 
+/* Styles for menu not hover */
 .menu:not(:hover){
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Styles for menu button */
 .menu_button {
     position: absolute;
     width: 170px;
@@ -94,17 +114,20 @@ body {
     transition-duration: .5s;
 }
 
+/* Styles for links */
 a {
     user-select: none;
     text-decoration: none;
     transition-duration: .1s;
 }
 
+/* Styles for links hover */
 a:hover {
     font-weight: 800;
     transition-duration: .1s;
 }
 
+/* Styles for page */
 .page {
     user-select: none;
     color: white;
@@ -113,18 +136,21 @@ a:hover {
     margin: 0;
 }
 
+/* Styles for page name */
 .page_name {
     position: absolute;
     top: 18px;
     left: 575px;
 }
 
+/* Styles for action */
 .action {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Styles for action text */
 .action_text {
     user-select: none;
     margin: 0;
@@ -133,11 +159,13 @@ a:hover {
     font-weight: 600;
 }
 
+/* Styles for label */
 label {
     font-size: 36px;
     font-weight: 600;
 }
 
+/* Styles for form line */
 .form_line {
     display: flex;
     flex-direction: row;
@@ -145,6 +173,7 @@ label {
     justify-content: space-between;
 }
 
+/* Styles for form */
 form {
     position: relative;
     margin: auto;
@@ -154,6 +183,7 @@ form {
     width: 70%;
 }
 
+/* Styles for input fields */
 input[type="text"],
 input[type="number"],
 select {
@@ -170,30 +200,23 @@ select {
     border-radius: 8px;
 }
 
+/* Styles for select element */
 select {
     width: 825px;
     height: 56px;
-
 }
 
-/* To disable ugly arrows:
-input[type="number"] {
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-    }
-    &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-    }
-} */
-
+/* Styles for input placeholder */
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Styles for valid input */
 input:valid {
     background-color: #727272;
 }
 
+/* Styles for submit and reset buttons */
 input[type="submit"], input[type="reset"] {
     font-family: "JetBrains Mono";
     color: white;
@@ -209,47 +232,24 @@ input[type="submit"], input[type="reset"] {
     transition-duration: .5s;
 }
 
+/* Styles for reset button */
 input[type="reset"] {
     background-color: #727272;
 }
 
+/* Styles for submit and reset buttons hover */
 input[type="submit"]:hover, input[type="reset"]:hover {
     opacity: 0.9;
     font-size: 28px;
     transition-duration: .5s;
 }
 
+/* Styles for added message */
 .added {
     display: none;
 }
 
-.goback {
-    border: 5px white solid;
-    border-radius: 8px;
-    color: white;
-    font-size: 54px;
-    font-weight: normal;
-    transition-duration: .1s;
-}
-
-.goback:hover {
-    font-weight: 800;
-    border: 7px white solid;
-    transition-duration: .1s;
-}
-
-.okText {
-    all: none;
-    color: white;
-    padding-top: 20px;
-    line-height: 50px;
-}
-
-.okText:hover {
-    font-weight: 400;
-    transition-duration: .1s;
-}
-
+/* Styles for OK button */
 .okButton {
     position: absolute;
     left: 45%;
@@ -266,6 +266,7 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     text-align: center;
 }
 
+/* Styles for OK button hover */
 .okButton:hover {
     opacity: 0.9;
     font-size: 28px;

@@ -1,4 +1,8 @@
-
+<!--
+    Customer Prescription Report
+    Adding Customer Prescription Report
+    C00290945 Artemiy Maslov 03.2024
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,8 +115,6 @@
             exit; // Terminate script execution
         }
 
-
-
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['customerDescription'] != "default") {
             session_destroy();
             session_start();
@@ -156,7 +158,7 @@
 
             $sql = $_SESSION['sql'];
             if (mysqli_query($con, $sql)) {
-// Check if any rows were affected by the query
+                // Check if any rows were affected by the query
                 if (mysqli_affected_rows($con) > 0) {
                     $message = "DETAILS FOR PROVIDED CREDENTIALS:";
 
@@ -171,11 +173,7 @@
             $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
         }
 
-
-
-        // Clear form submission session variable if request method is not POST
-
-
+        //Function to produce a report based on the provided SQL query
         function produceReport($con, $sql) {
             // Execute SQL query
             $result = mysqli_query($con, $sql);
@@ -208,8 +206,9 @@
             }
             // Close table
             echo "</table>";
-           // echo"<p>entered function</p>";
         }
+
+        //Function to produce a prescription report based on the provided SQL query
         function producePrescriptionReport($con, $sql) {
             // Execute SQL query
             $result = mysqli_query($con, $sql);
@@ -225,7 +224,7 @@
 				<td>".$row['sizeOfDosage']."</td>
 				<td>".$row['quantityOfDosage']."</td>
 				<td>".$row['frequencyOfDosage']."</td>
-				<td>".$row['lenghtOfDosage']."</td>
+				<td>".$row['lengthOfDosage']."</td>
 				<td>".$row['instructions']."</td>
               </tr>";
 
@@ -233,9 +232,8 @@
             // Close table
             echo "</table>";
             echo"<br><br>";
-            echo"<button onclick='navigateBack()' id='back'>BACK</button>";
+            echo"<button onclick='navigateBack()' id='back'>OK</button>";
 
-            // echo"<p>entered function</p>";
         }
 
         mysqli_close($con);
@@ -280,10 +278,7 @@
                 document.getElementById("dateButton").style.background = "rgb(0, 146, 69)";
             </script>
             <?php
-
-//нужно кнопки вытащить из пхп иначе я вызываю функцию до окончания тега форм, обработка результатов должна быть вне формы
-            // можно вызывать еще одну форму, внутри продьюс репорт(чтоб он выводил форму) и все, но есть проблема с лвумы формами на одной странице...тогда лучше просто вывод без формы,хотя мб проблемы не будет
-        }
+            }
             elseif($choice == 'Cost'){
                 $sql3 = $_SESSION['sql3'];
                 produceReport($con, $sql3);
@@ -300,22 +295,15 @@
                 <?php
             }
             else if($choice == 'nothing'){
-
                 echo"<script>console.log('nothing');</script>";
-
             }
             else{
-
-                $prescriptionSql = "SELECT drugName, sizeOfDosage, quantityOfDosage, frequencyOfDosage, lenghtOfDosage, instructions FROM Drug_to_Prescription
+                $prescriptionSql = "SELECT drugName, sizeOfDosage, quantityOfDosage, frequencyOfDosage, lengthOfDosage, instructions FROM Drug_to_Prescription
                 WHERE prescriptionID = '$choice'";
                 producePrescriptionReport($con, $prescriptionSql);
-
-
             }
         }
-
         mysqli_close($con);
-
         ?>
 </form>
 

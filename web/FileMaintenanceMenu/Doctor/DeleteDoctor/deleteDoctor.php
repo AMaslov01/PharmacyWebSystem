@@ -1,3 +1,8 @@
+<!--
+    Delete Doctor
+    Deleting Doctor
+    C00290945 Artemiy Maslov 02.2024
+-->
 <?php
 session_start(); // Start the session
 include '../../../db.inc.php'; // Include the database configuration file
@@ -45,12 +50,12 @@ mysqli_close($con); // Close database connection
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="deleteDoctor.css"> <!-- Include CSS file -->
-    <title>Delete Doctor</title> <!-- Set page title -->
+    <link rel="stylesheet" href="deleteDoctor.css">
+    <title>Delete Doctor</title>
 </head>
 <body>
 
-<div class="header"> <!-- Header section -->
+<div class="header">
     <div class="logo">
         <a href="../../../menu.html"><img src="../../../Resources/logo6.png" width="110px" height="110px" alt="logo"></a> <!-- Logo -->
     </div>
@@ -64,9 +69,7 @@ mysqli_close($con); // Close database connection
     </div>
 
     <div class="links" id="links">
-        <!-- Links to various sections -->
-        <!-- Adjust link styles and URLs as necessary -->
-        <!-- Example links provided below -->
+
         <div class="link" style="top: 5px; left: 0;">
             <a style="margin: 0; color: white; font-size: 30px;">COUNTER SALES</a>
         </div>
@@ -74,7 +77,7 @@ mysqli_close($con); // Close database connection
         <div class="link" style="top: 50px; left: 0;">
             <a style="margin: 0; color: white; font-size: 30px;">DISPENSE DRUGS</a>
         </div>
-
+        Drug
         <div class="link" style="top: 0; left: 350px">
             <a style="margin: 0; color: white; font-size: 30px;">STOCK CONTROL MENU</a>
         </div>
@@ -88,9 +91,9 @@ mysqli_close($con); // Close database connection
         </div>
 
         <div class="link" style="top: 50px; left: 820px">
-            <a style="margin: 0; color: white; font-size: 30px;" href="/PharmacyWebSystem/web/ReportsMenu/reportsMenu.html">REPORTS MENU</a>
+            <a style="margin: 0; color: white; font-size: 30px;" href="/PharmacyWebSystem/web   /ReportsMenu/reportsMenu.html">REPORTS MENU</a>
         </div>
-        <!-- Additional links can be added here -->
+
     </div>
 
     <div class="logout">
@@ -133,9 +136,7 @@ mysqli_close($con); // Close database connection
         </select>
     </div>
 
-    <!-- Input fields for doctor details -->
-    <!-- Adjust field labels and attributes as necessary -->
-    <!-- Disabled fields will be populated via JavaScript -->
+
     <div class="form_line">
         <label for="doctorID">DOCTOR ID</label>
         <input type="text" id="doctorID" name="doctorID" required disabled>
@@ -152,7 +153,7 @@ mysqli_close($con); // Close database connection
 
     <div class="form_line">
         <label for="surgeryAddress">SURGERY ADDRESS</label>
-        <input type="text" id="surgeryAddress" name="surgeryAddress" pattern="[0-9A-Za-z]+" required disabled>
+        <input type="text" id="surgeryAddress" name="surgeryAddress" pattern="[0-9A-Za-z\s]+" required disabled>
     </div>
 
     <div class="form_line">
@@ -172,7 +173,7 @@ mysqli_close($con); // Close database connection
 
     <div class="form_line">
         <label for="homeAddress">HOME ADDRESS</label>
-        <input type="text" id="homeAddress" name="homeAddress" pattern="[0-9A-Za-z]+" required disabled>
+        <input type="text" id="homeAddress" name="homeAddress" pattern="[0-9A-Za-z\s]+" required disabled>
     </div>
 
     <div class="form_line">
@@ -187,7 +188,7 @@ mysqli_close($con); // Close database connection
 
     <div class="form_line">
         <span></span>
-        <input type="submit" value="DELETE" id="deleteButton"/> <!-- Submit button to delete doctor -->
+        <input type="submit" value="DELETE" id="deleteButton"/>
     </div>
 
     <!-- Display message after form submission -->
@@ -203,7 +204,7 @@ mysqli_close($con); // Close database connection
     </div>
 </form>
 
-<script src="deleteDoctor.js"></script> <!-- Include JavaScript file -->
+<script src="deleteDoctor.js"></script>
 </body>
-</html> <!-- End of HTML document -->
+</html>
 

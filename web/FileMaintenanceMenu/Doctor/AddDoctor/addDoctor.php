@@ -1,17 +1,22 @@
+<!--
+    Add Doctor
+    Adding a new stock item
+    C00290945 Artemiy Maslov 02.2024
+-->
 <?php
 
 session_start(); // Start the session
-include '../../../db.inc.php';
+include '../../../db.inc.php'; // Include the database configuration file
 
 // Check if the reset action is requested
 if (isset($_GET['action']) && $_GET['action'] == 'resetMessage') {
-    unset($_SESSION['form_submitted']);
+    unset($_SESSION['form_submitted']); // Unset the session variable
     // Redirect to the same page without the query parameter to avoid accidental resets on refresh
     header('Location: addDoctor.php');
-    exit;
+    exit; // Terminate script execution
 }
 
-$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+$message = isset($_SESSION['message']) ? $_SESSION['message'] : ''; // Retrieve message from session or set empty string
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
     // Fetch the highest current StockID
@@ -23,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted']))
     // Increment the StockID by 1 for the new record
     $newDoctorID = $maxDoctorID + 1;
 
+    // Retrieve form data
     $doctorSurname = $_POST['surname'];
     $doctorFirstname = $_POST['firstName'];
     $surgeryAddress = $_POST['surgeryAddress'];
@@ -33,31 +39,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted']))
     $homeEircode = $_POST['homeEircode'];
     $homeTelephoneNumber = $_POST['homeTelephoneNumber'];
 
+    // Construct and execute SQL query to insert new doctor record
+    $sql = "INSERT INTO Doctor (doctorID, doctorSurname, doctorFirstname, surgeryAddress, surgeryEircode, surgeryTelephoneNumber, mobileTelephoneNumber, homeAddress, homeEircode, homeTelephoneNumber) 
+            VALUES ('$newDoctorID', '$doctorSurname', '$doctorFirstname', '$surgeryAddress', '$surgeryEircode', '$surgeryTelephoneNumber', '$mobileTelephoneNumber', '$homeAddress', '$homeEircode', '$homeTelephoneNumber')";
 
-    $sql = "INSERT INTO Doctor (doctorID, doctorSurname, doctorFirstname, surgeryAddress, surgeryEircode, surgeryTelephoneNumber, mobileTelephoneNumber, homeAddress, homeEircode, homeTelephoneNumber) VALUES ('$newDoctorID', '$doctorSurname', '$doctorFirtsname', '$surgeryAddress', '$surgeryEircode', '$surgeryTelephoneNumber', '$mobileTelephoneNumber', '$homeAddress', '$homeEircode', '$homeTelephoneNumber')";
-
-        if (mysqli_query($con, $sql)) {
-            $message = "A NEW DOCTOR HAS BEEN ADDED. ID: $maxDoctorID";
-        } else {
-            $message = "An Error in the SQL Query: " . mysqli_error($con);
-        }
-
-        $stockID = mysqli_insert_id($con);
-
-        $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
-    } elseif (isset($_SESSION['form_submitted'])) {
-        $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+    if (mysqli_query($con, $sql)) {
+        $message = "A NEW DOCTOR HAS BEEN ADDED. ID: $newDoctorID"; // Set success message
+    } else {
+        $message = "An Error in the SQL Query: " . mysqli_error($con); // Set error message
     }
 
-    // Clear the form submission flag when displaying the form again
-    if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-        unset($_SESSION['form_submitted']);
-        $message = '';
-    }
+    $stockID = mysqli_insert_id($con); // Get the auto-generated doctor ID
 
-mysqli_close($con);
+    $_SESSION['form_submitted'] = true; // Set a session variable to indicate form submission
+} elseif (isset($_SESSION['form_submitted'])) {
+    $message = "YOU HAVE ALREADY SUBMITTED THE FORM"; // Message to show if the form was already submitted
+}
+
+// Clear the form submission flag when displaying the form again
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    unset($_SESSION['form_submitted']);
+    $message = '';
+}
+
+mysqli_close($con); // Close database connection
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,7 +131,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="surgeryAddress">SURGERY ADDRESS</label>
-        <input type="text" id="surgeryAddress" name="surgeryAddress" pattern="[0-9A-Za-z]+" required>
+        <input type="text" id="surgeryAddress" name="surgeryAddress" pattern="[0-9A-Za-z\s]+" required>
     </div>
 
     <div class="form_line">
@@ -143,7 +151,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="homeAddress">HOME ADDRESS</label>
-        <input type="text" id="homeAddress" name="homeAddress" pattern="[0-9A-Za-z]+" required>
+        <input type="text" id="homeAddress" name="homeAddress" pattern="[0-9A-Za-z\s]+" required>
     </div>
 
     <div class="form_line">

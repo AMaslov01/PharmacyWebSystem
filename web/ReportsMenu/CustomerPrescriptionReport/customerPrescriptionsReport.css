@@ -1,3 +1,4 @@
+/* Body styles */
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
@@ -6,12 +7,14 @@ body {
     margin: 0;
 }
 
+/* Link styles */
 .link {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Header styles */
 .header {
     z-index: 1;
     padding: 0;
@@ -23,6 +26,7 @@ body {
     background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%);
 }
 
+/* Logo styles */
 .logo {
     user-select: none;
     position: absolute;
@@ -40,6 +44,7 @@ body {
     transition-duration: .5s;
 }
 
+/* Logout styles */
 .logout {
     user-select: none;
     position: absolute;
@@ -57,6 +62,7 @@ body {
     transition-duration: .5s;
 }
 
+/* Links container styles */
 .links {
     display: none;
     position: absolute;
@@ -66,6 +72,7 @@ body {
     top: 15px;
 }
 
+/* Menu styles */
 .menu {
     user-select: none;
     position: fixed;
@@ -85,6 +92,7 @@ body {
     transition-duration: .5s;
 }
 
+/* Menu button styles */
 .menu_button {
     position: absolute;
     width: 170px;
@@ -94,17 +102,21 @@ body {
     transition-duration: .5s;
 }
 
+
+/* Link styles */
 a {
     user-select: none;
     text-decoration: none;
     transition-duration: .1s;
 }
 
+/* Hover styles for links */
 a:hover {
     font-weight: 800;
     transition-duration: .1s;
 }
 
+/* Page styles */
 .page {
     user-select: none;
     color: white;
@@ -113,12 +125,14 @@ a:hover {
     margin: 0;
 }
 
+/* Page name styles */
 .page_name {
     position: absolute;
     top: 18px;
     left: 575px;
 }
 
+/* Form line styles */
 .form_line {
     display: flex;
     flex-direction: row;
@@ -127,6 +141,7 @@ a:hover {
     gap: 50px;
 }
 
+/* Form styles */
 form {
     position: relative;
     margin: auto;
@@ -137,13 +152,13 @@ form {
     user-select: none;
 }
 
+/* Label styles */
 label {
     font-size: 36px;
     font-weight: 600;
 }
 
-
-
+/* Input and select styles */
 input[type="text"],
 input[type="number"],
 input[type="date"],
@@ -161,25 +176,28 @@ select {
     border-radius: 8px;
 }
 
-
-
+/* Select styles */
 select {
     width: 825px;
     height: 56px;
-
 }
 
+/* Valid option styles */
 option:valid {
     background-color: #727272;
 }
 
+/* Placeholder styles for input */
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Valid input styles */
 input:valid {
     background-color: #727272;
 }
+
+/* Button styles */
 input[type="button"] {
     font-family: "JetBrains Mono";
     color: white;
@@ -194,7 +212,9 @@ input[type="button"] {
     background-color: rgb(0,146,69);
     transition-duration: .1s;
 }
-button{
+
+/* General button styles */
+button {
     font-family: "JetBrains Mono";
     color: white;
     font-size: 15px;
@@ -202,23 +222,10 @@ button{
     border: 2px white solid;
     border-radius: 5px;
 }
-#back{
-    font-family: "JetBrains Mono";
-    color: white;
-    font-size: 25px;
-    background-color: rgb(0,146,69);
-    border: 3px white solid;
-    border-radius: 8px;
-}
-#searchButton{
-    font-family: "JetBrains Mono";
-    color: white;
-    font-size: 25px;
-    background-color: rgb(0,146,69);
-    border: 3px white solid;
-    border-radius: 8px;
-}
-input[type="submit"], input[type="reset"]{
+
+/* Submit and reset button styles */
+input[type="submit"],
+input[type="reset"] {
     font-family: "JetBrains Mono";
     color: white;
     font-size: 24px;
@@ -233,48 +240,45 @@ input[type="submit"], input[type="reset"]{
     transition-duration: .1s;
 }
 
+/* Reset button background color */
 input[type="reset"] {
     background-color: #727272;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover {
+/* Hover styles for buttons */
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover {
     opacity: 0.9;
     font-size: 25px;
     transition-duration: .1s;
 }
 
-.amended {
-    position: absolute;
-    left: 150px;
-    top: 150px;
-    color: white;
-    font-size: 54px;
-    font-weight: 800;
-}
-
-.goback {
-    position: absolute;
-    top: 500px;
-    border: 5px white solid;
-    border-radius: 8px;
-    color: white;
-    font-size: 64px;
-    font-weight: normal;
-    transition-duration: .1s;
-}
-
-
-.goback:hover {
-    font-weight: 800;
-    border: 7px white solid;
-    transition-duration: .1s;
-}
-
+/* Disabled state styles */
 [data-disabled="true"] {
     pointer-events: none; /* Disable pointer events */
     opacity: 0.5; /* Reduce opacity to visually indicate disabled state */
 }
-
+/*CSS for back id*/
+#back{
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 25px;
+    background-color: rgb(0,146,69);
+    border: 3px white solid;
+    border-radius: 8px;
+}
+/*CSS for searchButton id*/
+#searchButton{
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 25px;
+    background-color: rgb(0,146,69);
+    border: 3px white solid;
+    border-radius: 8px;
+    height: 56px;
+}
+/*CSS for tag p*/
 p{
     font-size: 25px;
 }
@@ -295,8 +299,6 @@ th {
     font-size: 24px; /* Font size increased to 24px */
 }
 
-
-
 /* CSS for table data */
 td {
     border-bottom: 1px solid #ddd;
@@ -304,13 +306,11 @@ td {
     color: white;
     font-size: 24px; /* Font size increased to 24px */
 }
-
+/*CSS for disabled_button class*/
 .disabled_button{
     background-color: #727272;
 }
-.enabled_button{
-    background-color: rgb(0, 146, 69);
-}
+
 
 
 

@@ -1,17 +1,12 @@
-var inputStart = document.getElementById("startDatesDescription").value;
-var inputEnd = document.getElementById("endDatesDescription").value;
+/*
+    Customer Prescription Report
+    JavaScript for the Screen
+    C00290945 Artemiy Maslov 03.2024
+*/
 // Get the select element
 var selectElement = document.getElementById("customerDescription");
 
-// Get the selected option
-var selectedOption = selectElement.options[selectElement.selectedIndex];
-
-// Get the value attribute of the selected option
-var selectedValue = selectedOption.value;
-
-// Get the text content of the selected option
-var selectedText = selectedOption.textContent;
-
+// Function to toggle display of links and adjust menu button size
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
     var menu_button = document.querySelector('.menu_button');
@@ -27,16 +22,12 @@ document.getElementById('menu_button').addEventListener('click', function() {
     }
 });
 
-
+// Function to show/hide start and end date inputs based on selection
 function populate() {
     var select = document.getElementById("customerDescription");
-
     var startDatesDescription = document.getElementById("startDatesDescription");
-
     var endDatesDescription = document.getElementById("endDatesDescription");
-
     var selectedValue = select.value;
-
     if (selectedValue === 'default') {
         startDatesDescription.style.display = 'none';
         endDatesDescription.style.display = 'none';
@@ -46,7 +37,7 @@ function populate() {
     }
 }
 
-
+// Function to enable/disable date inputs based on selection
 function enableDiv() {
     var select = document.getElementById('customerDescription');
     var selectOption = select.options[selectElement.selectedIndex];
@@ -55,106 +46,65 @@ function enableDiv() {
     var startLabel = document.getElementById('startDatesLabel');
     var endLabel = document.getElementById('endDatesLabel');
     if(selectOption.value != "default") {
-        console.log("done");
         startDiv.style.display = 'block';
         startLabel.style.display = 'block';
         endDiv.style.display = 'block';
         endLabel.style.display = 'block';
-    }
-    else{
-        console.log("else");
+    } else {
         startDiv.style.display = 'none';
         startLabel.style.display = 'none';
         endDiv.style.display = 'none';
         endLabel.style.display = 'none';
     }
 }
+
+// Function to check if end date is after start date
 function checkDates(){
     var date1 = new Date(document.getElementById("startDatesDescription").value);
     var date2 = new Date(document.getElementById("endDatesDescription").value);
-    var reportForm = document.getElementById("reportForm");
-    if(date1>=date2) {
+    if(date1 >= date2) {
         alert("Ending date must be after starting date!");
         return false;
     }
     return true;
 }
-function storeValues(){
-    selectElement = document.getElementById("customerDescription");
 
-// Get the selected option
-    selectedOption = selectElement.options[selectElement.selectedIndex];
-
-// Get the value attribute of the selected option
-    selectedValue = selectedOption.value;
-
-// Get the text content of the selected option
-    selectedText = selectedOption.textContent;
-    console.log("select value: " + selectedValue);
-    console.log("select text: " + selectedText);
-    inputStart = document.getElementById("startDatesDescription").value;
-    console.log("start: " + inputStart);
-    inputEnd = document.getElementById("endDatesDescription").value;
-    console.log("end: " + inputEnd);
-}
-
-/*
-function restoreValues(){
-    selectElement = document.getElementById("customerDescription");
-
-// Get the selected option
-    selectElement.value = selectedValue;
-    selectElement.textContent = selectedText;
-    document.getElementById("startDatesDescription").value = inputStart;
-    document.getElementById("endDatesDescription").value = inputEnd;
-    console.log("restored values");
-} */
-
+// Function to handle form submission
 function onSubmit(){
     checkDates();
-    storeValues();
 }
+
+// Functions to set sorting options and trigger form submission
 function dateOrder(){
     document.reportForm.choice.value = "date";
-    console.log(document.reportForm.choice.value);
-
-
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
 }
-
-// JavaScript function to set choice value and submit form for surname order
 function surnameOrder(){
-
     document.reportForm.choice.value = "Surname";
-    console.log(document.reportForm.choice.value);
-
-
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
 }
 function costOrder(){
-
     document.reportForm.choice.value = "Cost";
-    console.log(document.reportForm.choice.value);
-
-
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
 }
 
+// Function to handle 'OPEN' button click and trigger form submission
 function openButton(button){
     document.reportForm.choice.value = button.value;
-    console.log(document.reportForm.choice.value);
     document.getElementById("startDatesDescription").removeAttribute("required");
     document.getElementById("endDatesDescription").removeAttribute("required");
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
 }
+
+// Function to navigate back and trigger form submission
 function navigateBack(){
     document.reportForm.choice.value = "nothing";
     document.getElementById("startDatesDescription").removeAttribute("required");
@@ -162,43 +112,14 @@ function navigateBack(){
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
-    console.log("transfered");
 }
+
+// Function to perform search and trigger form submission
 function search(){
     document.reportForm.choice.value = document.getElementById("searchById").value;
-    console.log(document.reportForm.choice.value);
     document.getElementById("startDatesDescription").removeAttribute("required");
     document.getElementById("endDatesDescription").removeAttribute("required");
     var form = document.getElementById("reportForm");
     var submitEvent = new Event("submit");
     form.dispatchEvent(submitEvent);
 }
-/*
-document.getElementById("reportForm").addEventListener("submit", function(event) {
-    // Your function logic here
-    console.log("Form submitted to server.");
-    restoreValues();
-
-    // This will execute after the form is submitted to the server
-});*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
