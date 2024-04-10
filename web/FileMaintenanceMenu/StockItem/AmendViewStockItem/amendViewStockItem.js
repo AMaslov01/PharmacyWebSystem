@@ -1,3 +1,10 @@
+/*
+    Amend/View Stock Item
+    JS for the amendViewStockItem.php page
+    C00290930 Evgenii Salnikov 04.2024
+*/
+
+/* Function for the MENU button behaviour */
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
     var menu_button = document.querySelector('.menu_button');
@@ -13,6 +20,7 @@ document.getElementById('menu_button').addEventListener('click', function() {
     }
 });
 
+/* Function to change the style of the Stock Item Description, because it requires logic, and cannot be done strictly with CSS only */
 document.getElementById("stockItemDescription").addEventListener("change", function () {
     var select = this;
     if (select.value !== "") {
@@ -22,6 +30,7 @@ document.getElementById("stockItemDescription").addEventListener("change", funct
     }
 });
 
+/* Function to populate form field with data-details */
 function populate() {
     var sel = document.getElementById("stockItemDescription");
     var result = sel.options[sel.selectedIndex].value;
@@ -51,6 +60,7 @@ function populate() {
     }
 }
 
+/* Function to toggle the disable property of all form fields with amend/view button states */
 function toggleLock() {
     var supplierNameInput = document.getElementById("supplierName"); // Text input or select element
     if(document.getElementById("amendViewButton").value === "AMEND") {
@@ -63,7 +73,6 @@ function toggleLock() {
         document.getElementById("supplierName").disabled = false;
         document.getElementById("amendViewButton").value = "VIEW";
         document.getElementById("amendViewButton").style.backgroundColor = "rgb(0, 146, 69)";
-        // var supplierNameValue = supplierNameInput.value; // Get current supplier name from text input
         document.getElementById("supplierDiv1").style.display = 'block';
         document.getElementById("supplierDiv2").style.display = 'none';
     } else {
@@ -82,11 +91,13 @@ function toggleLock() {
     }
 }
 
+/* Function to swap between first and second supplier form fields */
 function changeSelect() {
     document.getElementById("supplierDiv1").style.display = 'none';
     document.getElementById("supplierDiv2").style.display = 'block';
 }
 
+// When displaying the added message, scroll the user to its location on the page
 // When the page is loaded:...
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("amended");
@@ -102,25 +113,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Assuming you want to set it to a specific value that you've obtained from somewhere
-    var desiredValue = document.getElementById("supplierName").value;
-
-    // Set the selected option
-    var selectElement = document.getElementById("supplierName");
-    for(var i=0; i < selectElement.options.length; i++) {
-        if(selectElement.options[i].value === desiredValue) {
-            selectElement.selectedIndex = i;
-            break;
-        }
-    }
-});
-
+/* Function for confirming the changes */
 function confirmChanges(){
     // May be: "Please confirm that the details are correct"
     return confirm("Are you sure you want to make these changes?"); // Display confirmation dialog and return user's choice
 }
 
+/* Function for validating the form */
 function validateForm(){
     if(document.getElementById("amendViewButton").value === "AMEND"){
         return false;

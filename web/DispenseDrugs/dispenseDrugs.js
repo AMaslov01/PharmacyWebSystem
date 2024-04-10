@@ -36,13 +36,12 @@ function populate() {
     } else {
         // Split the details using the delimiter (comma)
         var customerDetails = details.split(',');
-        document.getElementById("customerName").value = customerDetails[0];
+        document.getElementById("customerName").value = customerDetails[2];
         document.getElementById("customerSurname").value = customerDetails[1];
-        document.getElementById("address").value = customerDetails[2];
-        document.getElementById("dateOfBirth").value = customerDetails[3];
+        document.getElementById("address").value = customerDetails[3];
+        document.getElementById("dateOfBirth").value = customerDetails[4];
     }
 }
-
 
 function confirmChanges(){
     // May be: "Please confirm that the details are correct"

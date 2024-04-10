@@ -1,3 +1,10 @@
+/*
+    Delete Stock Item
+    JS for the deleteStockItem.php page
+    C00290930 Evgenii Salnikov 04.2024
+*/
+
+/* Function for the MENU button behaviour */
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
     var menu_button = document.querySelector('.menu_button');
@@ -13,6 +20,7 @@ document.getElementById('menu_button').addEventListener('click', function() {
     }
 });
 
+/* Function to change the style of the Stock Item Description, because it requires logic, and cannot be done strictly with CSS only */
 document.getElementById("stockItemDescription").addEventListener("change", function () {
     var select = this;
     if (select.value !== "") {
@@ -22,6 +30,7 @@ document.getElementById("stockItemDescription").addEventListener("change", funct
     }
 });
 
+/* Function to populate form field with data-details */
 function populate() {
     var sel = document.getElementById("stockItemDescription");
     var result = sel.options[sel.selectedIndex].value;
@@ -43,10 +52,10 @@ function populate() {
         document.getElementById("costPrice").value = stockDetails[3];
         document.getElementById("supplierName").value = stockDetails[4];
     }
-
-    console.log(stockDetails[5]);
 }
 
+// When displaying the added message, scroll the user to its location on the page
+// When the page is loaded:...
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("deleted");
     //var body = document.getElementsByTagName("body");
@@ -61,15 +70,18 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+/* Function for confirming the changes */
 function confirmChanges(){
     return confirm("Are you sure you want to delete this item?"); // Display confirmation dialog and return user's choice
 }
 
+/* Function for validating the form */
 function validateForm(){
     var sel = document.getElementById("stockItemDescription");
     var details = sel.options[sel.selectedIndex].getAttribute("data-details");
     var stockDetails = details.split(',');
 
+    // Check if item fits the rules for deletion
     if(stockDetails[2] > 0 || stockDetails[5] > 0) {
         alert("You can not delete this item");
         return false;

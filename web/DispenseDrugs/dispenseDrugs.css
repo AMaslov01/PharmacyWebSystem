@@ -116,7 +116,7 @@ a:hover {
 .page_name {
     position: absolute;
     top: 18px;
-    left: 625px;
+    left: 750px;
 }
 
 .form_line {
@@ -143,6 +143,7 @@ label {
 
 input[type="text"],
 input[type="number"],
+input[type="date"],
 select {
     font-family: "JetBrains Mono";
     color: white;
@@ -152,7 +153,7 @@ select {
     width: 800px;
     height: 30px;
     padding: 10px;
-    margin: 12px 0;
+    margin: 0 0;
     border: 3px white solid;
     border-radius: 8px;
 }
@@ -230,7 +231,7 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     transition-duration: .1s;
 }
 
-.amended {
+.added {
     display: none;
     font-size: 36px;
     font-weight: 600;

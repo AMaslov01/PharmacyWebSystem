@@ -1,3 +1,10 @@
+/*
+    View/Amend Stock Item
+    CSS for the amendViewStockItem.php page
+    C00290930 Evgenii Salnikov 04.2024
+*/
+
+/* Style of the body */
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
@@ -6,12 +13,14 @@ body {
     margin: 0;
 }
 
+/* Style of the link class */
 .link {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Style of the header */
 .header {
     z-index: 1;
     padding: 0;
@@ -23,6 +32,7 @@ body {
     background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%);
 }
 
+/* Style for the logo */
 .logo {
     user-select: none;
     position: absolute;
@@ -30,16 +40,19 @@ body {
     left: 10px;
 }
 
+/* Style for logo hovered */
 .logo:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
 
+/* Style for logo not hovered */
 .logo:not(:hover) {
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style for logout image/button */
 .logout {
     user-select: none;
     position: absolute;
@@ -47,16 +60,19 @@ body {
     right: 0;
 }
 
+/* Style for logout image/button hovered */
 .logout:hover {
     transform: scale(1.1);
     transition-duration: .5s;
 }
 
+/* Style for logout image/button not hovered */
 .logout:not(:hover) {
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style of the links class */
 .links {
     display: none;
     position: absolute;
@@ -66,6 +82,7 @@ body {
     top: 15px;
 }
 
+/* Style of the menu class */
 .menu {
     user-select: none;
     position: fixed;
@@ -75,16 +92,19 @@ body {
     font-weight: 800;
 }
 
+/* Style of the menu class hovered */
 .menu:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
 
+/* Style of the menu class not hovered */
 .menu:not(:hover){
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style of the menu_button class */
 .menu_button {
     position: absolute;
     width: 170px;
@@ -94,17 +114,20 @@ body {
     transition-duration: .5s;
 }
 
+/* Style of the a tag */
 a {
     user-select: none;
     text-decoration: none;
     transition-duration: .1s;
 }
 
+/* Style of the a tag hovered */
 a:hover {
     font-weight: 800;
     transition-duration: .1s;
 }
 
+/* Style of the page class */
 .page {
     user-select: none;
     color: white;
@@ -113,12 +136,14 @@ a:hover {
     margin: 0;
 }
 
+/* Style of the page_name class */
 .page_name {
     position: absolute;
     top: 18px;
-    left: 575px;
+    left: 625px;
 }
 
+/* Style of the form_line class */
 .form_line {
     display: flex;
     flex-direction: row;
@@ -126,6 +151,7 @@ a:hover {
     justify-content: space-between;
 }
 
+/* Style of the form tag */
 form {
     position: relative;
     margin: auto;
@@ -136,11 +162,13 @@ form {
     user-select: none;
 }
 
+/* Style of the label tag */
 label {
     font-size: 36px;
     font-weight: 600;
 }
 
+/* Style of the input tag of type text and number and select tag */
 input[type="text"],
 input[type="number"],
 select {
@@ -157,6 +185,7 @@ select {
     border-radius: 8px;
 }
 
+/* Style of the input tag of type button */
 input[type="button"] {
     font-family: "JetBrains Mono";
     color: white;
@@ -173,6 +202,7 @@ input[type="button"] {
     text-align: center;
 }
 
+/* Style of the input tag of type button hovered */
 input[type="button"]:hover {
     font-weight: 800;
     font-size: 40px;
@@ -180,35 +210,38 @@ input[type="button"]:hover {
     transition-duration: .1s;
 }
 
+/* Style of the select tag */
 select {
     width: 825px;
     height: 56px;
 }
 
+/* Style of the select tag valid */
 select:valid {
     background-color: #727272;
 }
 
+/* Style of the select tag invalid */
 select:invalid {
     background-color: rgb(0,146,69);
 }
 
+/* Style of the valid input tag */
 input:valid {
     background-color: #727272;
 }
 
+/* Style of the invalid input tag */
 input:invalid {
     background-color: rgb(0,146,69);
 }
 
+/* Style of the input tag's placeholder */
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
 
-input:valid {
-    background-color: #727272;
-}
-
+/* Style of the input tag of type submit */
 input[type="submit"] {
     font-family: "JetBrains Mono";
     color: white;
@@ -224,18 +257,22 @@ input[type="submit"] {
     transition-duration: .1s;
 }
 
-input[type="submit"]:hover, input[type="reset"]:hover {
+/* Style of the input tag of type submit and reset hovered */
+input[type="submit"]:hover,
+input[type="reset"]:hover {
     opacity: 0.9;
     font-size: 28px;
     transition-duration: .1s;
 }
 
+/* Style of the amended class */
 .amended {
     display: none;
     font-size: 36px;
     font-weight: 600;
 }
 
+/* Style of the okText class */
 .okText {
     all: none;
     color: white;
@@ -243,11 +280,13 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     line-height: 50px;
 }
 
+/* Style of the okText class hovered */
 .okText:hover {
     font-weight: 400;
     transition-duration: .1s;
 }
 
+/* Style of the okButton class */
 .okButton {
     position: absolute;
     left: 45%;
@@ -264,6 +303,7 @@ input[type="submit"]:hover, input[type="reset"]:hover {
     text-align: center;
 }
 
+/* Style of the okButton class hovered */
 .okButton:hover {
     opacity: 0.9;
     font-size: 28px;
