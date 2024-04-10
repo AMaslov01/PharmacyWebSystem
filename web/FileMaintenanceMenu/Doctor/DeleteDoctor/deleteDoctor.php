@@ -87,11 +87,11 @@ mysqli_close($con); // Close database connection
         </div>
 
         <div class="link" style="top: 0; left: 820px">
-            <a href="fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
+            <a href="../../fileMaintenanceMenu.html" style="margin: 0; color: white; font-size: 30px;">FILE MAINTENANCE MENU</a>
         </div>
 
         <div class="link" style="top: 50px; left: 820px">
-            <a style="margin: 0; color: white; font-size: 30px;" href="/PharmacyWebSystem/web   /ReportsMenu/reportsMenu.html">REPORTS MENU</a>
+            <a style="margin: 0; color: white; font-size: 30px;" href="/PharmacyWebSystem/web/ReportsMenu/reportsMenu.html">REPORTS MENU</a>
         </div>
 
     </div>
