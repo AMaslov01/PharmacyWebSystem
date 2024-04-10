@@ -1,3 +1,8 @@
+<!--
+    Amend/View Doctor
+    Amending and Viewing doctor
+    C00290945 Artemiy Maslov 02.2024
+-->
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -153,7 +158,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="surgeryAddress">SURGERY ADDRESS</label>
-        <input type="text" id="surgeryAddress" name="surgeryAddress" pattern="[0-9A-Za-z]+" required disabled>
+        <input type="text" id="surgeryAddress" name="surgeryAddress" pattern="[0-9A-Za-z\s]+" required disabled>
     </div>
 
     <div class="form_line">
@@ -173,7 +178,7 @@ mysqli_close($con);
 
     <div class="form_line">
         <label for="homeAddress">HOME ADDRESS</label>
-        <input type="text" id="homeAddress" name="homeAddress" pattern="[0-9A-Za-z]+" required disabled>
+        <input type="text" id="homeAddress" name="homeAddress" pattern="[0-9A-Za-z\s]+" required disabled>
     </div>
 
     <div class="form_line">

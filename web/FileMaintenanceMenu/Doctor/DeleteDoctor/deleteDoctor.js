@@ -1,3 +1,9 @@
+/*
+    Delete Doctor
+    JavaScript for the Screen
+    C00290945 Artemiy Maslov 02.2024
+*/
+// Function to toggle display of navigation links and adjust MENU button size
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
     var menu_button = document.querySelector('.menu_button');
@@ -13,6 +19,7 @@ document.getElementById('menu_button').addEventListener('click', function() {
     }
 });
 
+// Function to change background color of select element based on value
 document.getElementById("doctorDescription").addEventListener("change", function () {
     var select = this;
     if (select.value !== "") {
@@ -22,6 +29,7 @@ document.getElementById("doctorDescription").addEventListener("change", function
     }
 });
 
+// Function to populate form fields based on selected option
 function populate() {
     var sel = document.getElementById("doctorDescription");
     var result = sel.options[sel.selectedIndex].value;
@@ -48,34 +56,35 @@ function populate() {
         document.getElementById("surgeryAddress").value = doctorDetails[3];
         document.getElementById("surgeryEircode").value = doctorDetails[4];
         document.getElementById("surgeryTelephoneNumber").value = doctorDetails[5];
-        document.getElementById("mobileTelephoneNumber").value =doctorDetails[6];
+        document.getElementById("mobileTelephoneNumber").value = doctorDetails[6];
         document.getElementById("homeAddress").value = doctorDetails[7];
         document.getElementById("homeEircode").value = doctorDetails[8];
         document.getElementById("homeTelephoneNumber").value = doctorDetails[9];
     }
 }
+
+// Function to handle content loading event
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("deleted");
-    //var body = document.getElementsByTagName("body");
     var message = messageDiv.textContent || messageDiv.innerText;
     if (message.trim().length > 1) {
-        //body.style.height = "1400px";
         messageDiv.style.display = "block"; // Make sure the div is visible
         messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-        //body.style.height = "1000px";
         messageDiv.style.display = "none"; // Hide div if no message
     }
 });
+
+// Function to confirm changes before deletion
 function confirmChanges(){
     return confirm("Are you sure you want to delete this item?"); // Display confirmation dialog and return user's choice
 }
 
+// Function to validate form before deletion
 function validateForm(){
     var sel = document.getElementById("doctorDescription");
     var details = sel.options[sel.selectedIndex].getAttribute("data-details");
     var doctorDetails = details.split(',');
-
     if(doctorDetails[2] > 0 && doctorDetails[5] > 0) {
         alert("You can not delete this item");
         return false;

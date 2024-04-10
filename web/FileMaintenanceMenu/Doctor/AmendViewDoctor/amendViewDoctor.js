@@ -1,3 +1,8 @@
+/*
+    Amend/View Doctor
+    JavaScript for the Screen
+    C00290945 Artemiy Maslov 02.2024
+*/
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
     var menu_button = document.querySelector('.menu_button');
@@ -13,15 +18,18 @@ document.getElementById('menu_button').addEventListener('click', function() {
     }
 });
 
+// Add event listener to the select element for doctor description
 document.getElementById("doctorDescription").addEventListener("change", function () {
     var select = this;
+    // Change background color based on selection
     if (select.value !== "") {
-        select.style.backgroundColor = "#727272";
+        select.style.backgroundColor = "#727272"; // Set background color to gray
     } else {
-        select.style.backgroundColor = "rgb(0, 146, 69)";
+        select.style.backgroundColor = "rgb(0, 146, 69)"; // Set background color to green
     }
 });
 
+// Function to populate form fields based on selected doctor
 function populate() {
     var sel = document.getElementById("doctorDescription");
     var result = sel.options[sel.selectedIndex].value;
@@ -39,8 +47,8 @@ function populate() {
         document.getElementById("homeAddress").value = "";
         document.getElementById("homeEircode").value = "";
         document.getElementById("homeTelephoneNumber").value = "";
-
     } else {
+        // Populate fields with doctor details
         var doctorDetails = details.split(',');
         document.getElementById("doctorID").value = doctorDetails[0];
         document.getElementById("surname").value = doctorDetails[1];
@@ -55,8 +63,10 @@ function populate() {
     }
 }
 
+// Function to toggle form field locks
 function toggleLock() {
     if(document.getElementById("amendViewButton").value === "AMEND") {
+        // Enable fields for editing
         document.getElementById("surname").disabled = false;
         document.getElementById("firstName").disabled = false;
         document.getElementById("surgeryAddress").disabled = false;
@@ -66,9 +76,10 @@ function toggleLock() {
         document.getElementById("homeAddress").disabled = false;
         document.getElementById("homeEircode").disabled = false;
         document.getElementById("homeTelephoneNumber").disabled = false;
-        document.getElementById("amendViewButton").value = "VIEW";
-        document.getElementById("amendViewButton").style.backgroundColor = "rgb(0, 146, 69)";
+        document.getElementById("amendViewButton").value = "VIEW"; // Change button text
+        document.getElementById("amendViewButton").style.backgroundColor = "rgb(0, 146, 69)"; // Change button background color
     } else {
+        // Disable fields for viewing
         document.getElementById("surname").disabled = true;
         document.getElementById("firstName").disabled = true;
         document.getElementById("surgeryAddress").disabled = true;
@@ -78,11 +89,12 @@ function toggleLock() {
         document.getElementById("homeAddress").disabled = true;
         document.getElementById("homeEircode").disabled = true;
         document.getElementById("homeTelephoneNumber").disabled = true;
-        document.getElementById("amendViewButton").value = "AMEND";
-        document.getElementById("amendViewButton").style.backgroundColor = "#727272";
+        document.getElementById("amendViewButton").value = "AMEND"; // Change button text
+        document.getElementById("amendViewButton").style.backgroundColor = "#727272"; // Change button background color
     }
 }
 
+// Event listener to show/hide message div on page load
 document.addEventListener("DOMContentLoaded", function() {
     var messageDiv = document.getElementById("amended");
     var message = messageDiv.textContent || messageDiv.innerText;
@@ -94,14 +106,15 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// Function to confirm changes before submission
 function confirmChanges(){
     return confirm("Are you sure you want to make these changes?"); // Display confirmation dialog and return user's choice
 }
 
+// Function to validate form submission
 function validateForm(){
     if(document.getElementById("amendViewButton").value === "AMEND"){
-        return false;
+        return false; // Prevent form submission if in amend mode
     }
-    return confirmChanges();
-
+    return confirmChanges(); // Otherwise, confirm changes before submission
 }
