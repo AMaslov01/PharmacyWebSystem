@@ -1,20 +1,30 @@
+<!--
+    Menu
+    Menu Starter Page
+    C00290930 Evgenii Salnikov 04.2024
+-->
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Link to external css -->
         <link rel="stylesheet" href="menu.css">
         <title>Menu</title>
     </head>
     <body>
+        <!-- Static header of the page -->
         <div class="header">
-
+            <!-- Logo in the top left corner -->
             <div class="logo">
                 <a href="menu.html"><img src="Resources/logo6.png" width="110px" height="110px" alt="logo"></a>
             </div>
 
+            <!-- Menu button that displays the menu links -->
             <div class="menu_button" id="menu_button">
                 <p class="menu">MENU</p>
             </div>
 
+            <!-- Links to other pages that show up with the click on Menu button -->
             <div class="links" id="links">
                 <div class="link" style="top: 5px; left: 0;">
                     <a style="margin: 0; color: white; font-size: 30px;">COUNTER SALES</a>
@@ -37,15 +47,17 @@
                 </div>
 
                 <div class="link" style="top: 50px; left: 820px">
-                    <a style="margin: 0; color: white; font-size: 30px;">REPORTS MENU</a>
+                    <a href="ReportsMenu/reportsMenu.html" style="margin: 0; color: white; font-size: 30px;">REPORTS MENU</a>
                 </div>
             </div>
 
+            <!-- Logout logo and button -->
             <div class="logout">
                 <a href="logIn.html"><img src="Resources/logout3.png" width="160px" height="160px" alt="logo"></a>
             </div>
         </div>
 
+        <!-- Link to external JS -->
         <script src="menu.js"></script>
     </body>
 </html>

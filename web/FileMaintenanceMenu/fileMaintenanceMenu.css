@@ -1,3 +1,10 @@
+/*
+    File Maintenance Menu
+    CSS for the fileMaintenanceMenu.html page
+    C00290930 Evgenii Salnikov 04.2024
+*/
+
+/* Style of the body */
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
@@ -5,12 +12,14 @@ body {
     margin: 0;
 }
 
+/* Style of the link class */
 .link {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Style of the header */
 .header {
     padding: 0;
     margin: 0;
@@ -21,6 +30,7 @@ body {
     background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%);
 }
 
+/* Style for the logo */
 .logo {
     user-select: none;
     position: absolute;
@@ -28,16 +38,19 @@ body {
     left: 10px;
 }
 
+/* Style for logo hovered */
 .logo:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
 
+/* Style for logo not hovered */
 .logo:not(:hover) {
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style for logout image/button */
 .logout {
     user-select: none;
     position: absolute;
@@ -45,16 +58,19 @@ body {
     right: 0;
 }
 
+/* Style for logout image/button hovered */
 .logout:hover {
     transform: scale(1.1);
     transition-duration: .5s;
 }
 
+/* Style for logout image/button not hovered */
 .logout:not(:hover) {
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style of the links class */
 .links {
     display: none;
     position: absolute;
@@ -64,6 +80,7 @@ body {
     top: 15px;
 }
 
+/* Style of the menu class */
 .menu {
     user-select: none;
     position: fixed;
@@ -73,15 +90,19 @@ body {
     font-weight: 800;
 }
 
+/* Style of the menu class hovered */
 .menu:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
+
+/* Style of the menu class not hovered */
 .menu:not(:hover){
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style of the menu_button class */
 .menu_button {
     position: absolute;
     width: 170px;
@@ -91,17 +112,20 @@ body {
     transition-duration: .5s;
 }
 
+/* Style of the a tag */
 a {
     user-select: none;
     text-decoration: none;
     transition-duration: .1s;
 }
 
+/* Style of the a tag hovered */
 a:hover {
     font-weight: 800;
     transition-duration: .1s;
 }
 
+/* Style of the page class */
 .page {
     user-select: none;
     color: white;
@@ -110,18 +134,21 @@ a:hover {
     margin: 0;
 }
 
+/* Style of the page_name class */
 .page_name {
     position: relative;
     top: 18px;
-    left: 550px;
+    left: 650px;
 }
 
+/* Style of the action class */
 .action {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Style of the action_text class */
 .action_text {
     user-select: none;
     margin: 0;
@@ -130,6 +157,7 @@ a:hover {
     font-weight: 600;
 }
 
+/* Style of the customer_button, doctor_button, drug_button, supplier_button, stock_button classes */
 .customer_button, .doctor_button, .drug_button, .supplier_button, .stock_button {
     position: fixed;
     margin: 0;
@@ -140,6 +168,7 @@ a:hover {
     transition-duration: .5s;
 }
 
+/* Style of the customer_actions, doctor_actions, drug_actions, supplier_actions, stock_actions classes */
 .customer_actions, .doctor_actions, .drug_actions, .supplier_actions, .stock_actions {
     display: none;
     position: absolute;
@@ -148,6 +177,7 @@ a:hover {
     left: 570px;
 }
 
+/* Style of the drug, stock, doctor, supplier, customer classes */
 .drug, .stock, .doctor, .supplier, .customer {
     user-select: none;
     position: fixed;
@@ -157,11 +187,13 @@ a:hover {
     font-weight: 700;
 }
 
+/* Style of the drug, stock, doctor, supplier, customer classes hovered */
 .drug:hover, .stock:hover, .doctor:hover, .supplier:hover, .customer:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
 
+/* Style of the drug, stock, doctor, supplier, customer classes not hovered */
 .drug:not(:hover), .stock:not(:hover), .doctor:not(:hover), .supplier:not(:hover), .customer:not(:hover){
     transform: scale(1);
     transition-duration: .5s;

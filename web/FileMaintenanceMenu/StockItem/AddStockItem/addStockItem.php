@@ -3,6 +3,7 @@
     Adding a new stock item
     C00290930 Evgenii Salnikov 04.2024
 -->
+
 <?php
 session_start(); // Start the session
 include '../../../db.inc.php'; // Include the database connection file
@@ -19,7 +20,7 @@ $message = isset($_SESSION['message']) ? $_SESSION['message'] : ''; // Initializ
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_SESSION['form_submitted'])) {
     // Fetch the highest current StockID
-    $sql = "SELECT MAX(StockID) AS MaxStockID FROM Stock";
+    $sql = "SELECT MAX(StockID) AS MaxStockID FROM stock";
     $result = mysqli_query($con, $sql); // Execute the query
     $row = mysqli_fetch_assoc($result); // Fetch the result row
     $maxStockID = $row['MaxStockID']; // Get the highest StockID

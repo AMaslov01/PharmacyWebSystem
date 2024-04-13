@@ -1,3 +1,10 @@
+/*
+    Menu
+    CSS for the menu.html page
+    C00290930 Evgenii Salnikov 04.2024
+*/
+
+/* Style of the body */
 body {
     font-family: "JetBrains Mono";
     background-color: #727272;
@@ -5,12 +12,14 @@ body {
     margin: 0;
 }
 
+/* Style of the link class */
 .link {
     position: absolute;
     width: fit-content;
     height: 40px;
 }
 
+/* Style of the header */
 .header {
     padding: 0;
     margin: 0;
@@ -21,6 +30,7 @@ body {
     background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%);
 }
 
+/* Style for the logo */
 .logo {
     user-select: none;
     position: absolute;
@@ -28,16 +38,19 @@ body {
     left: 10px;
 }
 
+/* Style for logo hovered */
 .logo:hover {
     transform: scale(1.05);
     transition-duration: .5s;
 }
 
+/* Style for logo not hovered */
 .logo:not(:hover) {
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style for logout image/button */
 .logout {
     user-select: none;
     position: absolute;
@@ -45,16 +58,19 @@ body {
     right: 0;
 }
 
+/* Style for logout image/button hovered */
 .logout:hover {
     transform: scale(1.1);
     transition-duration: .5s;
 }
 
+/* Style for logout image/button not hovered */
 .logout:not(:hover) {
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style of the links class */
 .links {
     display: none;
     position: absolute;
@@ -64,6 +80,7 @@ body {
     top: 15px;
 }
 
+/* Style of the menu class */
 .menu {
     user-select: none;
     position: fixed;
@@ -73,16 +90,20 @@ body {
     font-weight: 800;
 }
 
+/* Style of the menu class hovered */
 .menu:hover {
     /* box-shadow: 5px 5px 7px 1px rgba(255, 255, 255, 0.85); */
     transform: scale(1.05);
     transition-duration: .5s;
 }
+
+/* Style of the menu class not hovered */
 .menu:not(:hover){
     transform: scale(1);
     transition-duration: .5s;
 }
 
+/* Style of the menu_button class */
 .menu_button {
     position: absolute;
     width: 170px;
@@ -94,17 +115,19 @@ body {
     border-radius: 20px; */
 }
 
+/* Style of the menu_button class hovered */
 .menu_button:hover {
     color: #c8c8c8;
 }
 
-
+/* Style of the a tag */
 a {
     user-select: none;
     text-decoration: none;
     transition-duration: .1s;
 }
 
+/* Style of the a tag hovered */
 a:hover {
     font-weight: 800;
     transition-duration: .1s;
