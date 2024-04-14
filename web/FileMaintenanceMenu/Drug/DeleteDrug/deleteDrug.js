@@ -1,8 +1,10 @@
-/*
-    Delete Doctor
-    JavaScript for the Screen
-    C00290945 Artemiy Maslov 02.2024
-*/
+
+// Author			: Nebojsa Kukic
+// Date				: 23/02/2024
+// Purpose			: Add a Drug to the Customer Table.
+//					: This is the html and php	
+
+
 // Function to toggle display of navigation links and adjust MENU button size
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
