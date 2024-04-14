@@ -1,8 +1,8 @@
 <?php
 $hostname = "localhost:3306";
-//  $username = "healthfirst";
+
 $username = "root"; // username for local db
-// $password = "bsw81@6M1";
+
 $password = ""; // password for local db
 
 $dbname = "PharmacyWebSystem2";
