@@ -139,7 +139,7 @@
 
             <div class="form_line">
                 <label for="drugStrength">DRUG STRENGTH</label>
-                <input type="text" id="drugStrength" name="drugStrength" pattern="[A-Za-z., ]+" required>
+                <input type="text" id="drugStrength" name="drugStrength" pattern="[0-9A-Za-z., ]+" required>
             </div>
 
             <div class="form_line">
