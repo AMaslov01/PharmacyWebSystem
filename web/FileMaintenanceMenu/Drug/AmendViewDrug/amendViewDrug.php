@@ -259,12 +259,12 @@ mysqli_close($con);
 			<!-- Form field for cost price -->
             <div class="form_line">
                 <label for="costPrice">COST PRICE</label>
-                <input type="number" id="costPrice" name="costPrice" pattern="[0-9A-Za-z., ]+" required disabled>
+                <input type="number" id="costPrice" name="costPrice" pattern="[0-9A-Za-z., ]+"  min="0.01" step=".01" required disabled>
             </div>
 			<!-- Form field for retail price -->
             <div class="form_line">
                 <label for="retailPrice">RETAIL PRICE</label>
-                <input type="number" id="retailPrice" name="retailPrice" pattern="[0-9A-Za-z., ]+" required disabled>
+                <input type="number" id="retailPrice" name="retailPrice" pattern="[0-9A-Za-z., ]+" min="0.01" step=".01" required disabled>
             </div>
 			<!-- Form field for quantity in stock -->
             <div class="form_line">
