@@ -242,7 +242,7 @@ mysqli_close($con);
             <!-- Form field for drug strength -->
             <div class="form_line">
                 <label for="drugStrength">DRUG STRENGTH</label>
-                <input type="text" id="drugStrength" name="drugStrength" required disabled>
+                <input type="text" id="drugStrength" name="drugStrength" pattern="[0-9A-Za-z., ]+"required disabled>
             </div>
 
             <!-- Form field for usage instructions -->
