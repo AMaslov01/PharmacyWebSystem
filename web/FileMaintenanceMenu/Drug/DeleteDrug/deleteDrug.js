@@ -2,7 +2,7 @@
 // Author			: Nebojsa Kukic
 // Date				: 23/02/2024
 // Purpose			: Add a Drug to the Customer Table.
-//					: This is the html and php	
+//					: This is the js	
 
 
 // Function to toggle display of navigation links and adjust MENU button size
