@@ -1,8 +1,10 @@
 <!--
-    View/Amend Stock Item
-    Viewing and Amending a stock item
-    C00290930 Evgenii Salnikov 04.2024
+// Author			: Nebojsa Kukic
+// Date				: 23/02/2024
+// Purpose			: Add a Drug to the Customer Table.
+//					: This is the html and php	
 -->
+
 <?php
 session_start(); // Start the session
 include '../../../db.inc.php';
