@@ -1,0 +1,218 @@
+/*
+    NAME:           ABDULLAH JOBBEH
+    DESCRIPTION:    CSS FILE FOR ADDING CUSTOMER TO A DATABASE
+    DATE:           1/4/2024
+    STUDENTID:      C00284285
+*/
+body {
+    font-family: "JetBrains Mono"; /* Sets the font family for the entire body */
+    background-color: #727272; /* Background color of the page */
+    padding: 0; /* Removes padding */
+    margin: 0; /* Removes margin */
+}
+
+.link {
+    position: absolute; /* Positioning is absolute, relative to its positioned ancestor */
+    width: fit-content; /* Width is the minimum size to contain its contents */
+    height: 40px; /* Fixed height */
+}
+
+.header {
+    padding: 0; /* No padding */
+    margin: 0; /* No margin */
+    position: fixed; /* Header is fixed at the top of the page */
+    width: 100%; /* Full width */
+    height: 150px; /* Height of the header */
+    background: rgb(114,114,114); /* Background color */
+    background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%); /* Gradient color from grey to green */
+}
+
+.logo {
+    user-select: none; /* Prevents text selection */
+    position: absolute; /* Absolute positioning */
+    top: 5px; /* 5 pixels from the top */
+    left: 10px; /* 10 pixels from the left */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Scales up the logo on hover */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+.logo:not(:hover) {
+    transform: scale(1); /* Returns logo to original scale when not hovered */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+.logout {
+    user-select: none; /* Prevents text selection */
+    position: absolute; /* Absolute positioning */
+    top: -10px; /* -10 pixels from the top */
+    right: 0; /* At the right edge */
+}
+
+.logout:hover {
+    transform: scale(1.1); /* Scales up the logout icon on hover */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+.logout:not(:hover) {
+    transform: scale(1); /* Returns logout icon to original scale when not hovered */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+.links {
+    display: none; /* Initially hides the navigation links */
+    position: absolute; /* Absolute positioning */
+    width: 1200px; /* Width of the links container */
+    height: 90px; /* Height of the links container */
+    left: 420px; /* 420 pixels from the left */
+    top: 15px; /* 15 pixels from the top */
+}
+
+.menu {
+    user-select: none; /* Prevents text selection */
+    position: fixed; /* Fixed position */
+    margin: 0; /* No margin */
+    color: white; /* Text color */
+    font-size: 64px; /* Font size */
+    font-weight: 800; /* Font weight */
+}
+
+.menu:hover {
+    transform: scale(1.05); /* Scales up the menu text on hover */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+.menu:not(:hover){
+    transform: scale(1); /* Returns menu text to original scale when not hovered */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+.menu_button {
+    position: absolute; /* Absolute positioning */
+    width: 170px; /* Width of the menu button */
+    height: 80px; /* Height of the menu button */
+    left: 170px; /* 170 pixels from the left */
+    top: 18px; /* 18 pixels from the top */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+a {
+    text-decoration: none; /* Removes underline from links */
+}
+
+a:hover {
+    font-weight: 800; /* Bold on hover */
+}
+
+.page {
+    user-select: none; /* Prevents text selection */
+    color: white; /* Text color */
+    font-size: 64px; /* Font size */
+    font-weight: 600; /* Font weight */
+    margin: 0; /* No margin */
+}
+
+.page_name {
+    position: absolute; /* Absolute positioning */
+    top: 18px; /* 18 pixels from the top */
+    left: 600px; /* 600 pixels from the left */
+}
+
+.action {
+    position: absolute; /* Absolute positioning */
+    width: fit-content; /* Width to fit its contents */
+    height: 40px; /* Fixed height */
+}
+
+.action_text {
+    user-select: none; /* Prevents text selection */
+    margin: 0; /* No margin */
+    color: white; /* Text color */
+    font-size: 40px; /* Font size */
+    font-weight: 600; /* Font weight */
+}
+
+label {
+    font-size: 36px; /* Font size */
+    font-weight: 600; /* Font weight */
+}
+
+.form_line {
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: row; /* Elements are in a row */
+    align-items: center; /* Centers items vertically */
+    justify-content: space-between; /* Space between the items */
+}
+
+form {
+    position: relative; /* Relative positioning */
+    margin: auto; /* Centers the form horizontally */
+    height: 600px; /* Height of the form */
+    top: 200px; /* 200 pixels from the top */
+    color: white; /* Text color */
+    width: 70%; /* Width is 70% of its container */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+    font-family: "JetBrains Mono"; /* Font family */
+    color: white; /* Text color */
+    font-size: 24px; /* Font size */
+    font-weight: 400; /* Font weight */
+    background-color: rgb(0,146,69); /* Background color */
+    width: 800px; /* Width */
+    height: 30px; /* Height */
+    padding: 10px; /* Padding inside the input */
+    margin: 12px 0; /* Margin around the input */
+    border: 3px white solid; /* Border properties */
+    border-radius: 8px; /* Rounded corners */
+}
+
+input[type="tel"]:default {
+    background-color: rgb(0,146,69); /* Default background color for telephone input */
+}
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverts the color of the date picker indicator */
+}
+
+input[type=date]:invalid::-webkit-datetime-edit {
+    color: rgba(255, 255, 255, 0.5); /* Color for invalid date input */
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Placeholder text color */
+}
+
+input:valid {
+    background-color: #727272; /* Background color when input is valid */
+}
+
+input[type="submit"], input[type="reset"] {
+    font-family: "JetBrains Mono"; /* Font family */
+    color: white; /* Text color */
+    font-size: 24px; /* Font size */
+    font-weight: 400; /* Font weight */
+    margin-top: 50px; /* Margin from the top */
+    width: 200px; /* Width */
+    height: 50px; /* Height */
+    border-radius: 8px; /* Rounded corners */
+    border: 3px white solid; /* Border properties */
+    cursor: pointer; /* Cursor type */
+    background-color: rgb(0,146,69); /* Background color */
+    transition-duration: .5s; /* Transition effect duration */
+}
+
+input[type="reset"] {
+    background-color: #727272; /* Background color for reset button */
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+    opacity: 0.9; /* Opacity on hover */
+    font-size: 28px; /* Font size on hover */
+    transition-duration: .5s; /* Transition effect duration */
+}

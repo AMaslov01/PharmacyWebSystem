@@ -1,0 +1,51 @@
+/*
+    NAME:           ABDULLAH JOBBEH
+    DESCRIPTION:    CSS FILE FOR ADDING CUSTOMER TO A DATABASE
+    DATE:           1/4/2024
+    STUDENTID:      C00284285
+*/
+body {
+    font-family: "JetBrains Mono"; /* Sets the typeface for the body element */
+    background-color: #727272; /* Gray background color for the body */
+    padding: 0; /* Removes padding from the body */
+    margin: 0; /* Removes margin from the body */
+}
+
+h2 {
+    color: white; /* Sets the text color for h2 headings to white */
+    text-align: center; /* Centers h2 headings horizontally */
+    margin-top: 100px; /* Adds space above h2 headings */
+}
+
+p {
+    color: white; /* Sets paragraph text color to white */
+    font-size: 24px; /* Sets font size of paragraph text */
+    text-align: center; /* Centers paragraph text horizontally */
+    margin: 5px 0; /* Adds vertical spacing to paragraph text */
+}
+
+.okButton {
+    display: block; /* Makes the div a block element */
+    width: 200px; /* Sets the width of the button */
+    height: 50px; /* Sets the height of the button */
+    margin: 20px auto; /* Centers the button horizontally and adds vertical spacing */
+    background-color: rgb(0, 146, 69); /* Sets a green background color */
+    border-radius: 8px; /* Rounds the corners of the button */
+    text-align: center; /* Centers the text within the button */
+    line-height: 50px; /* Centers the text vertically within the button */
+    transition: background-color 0.3s ease; /* Animates the background color change on hover */
+}
+
+.okButton:hover {
+    background-color: #727272; /* Changes the button color on hover to match the body background */
+}
+
+.okText {
+    color: white; /* Sets the link color to white */
+    text-decoration: none; /* Removes underline from the link */
+    display: block; /* Makes the link fill the container */
+    height: 100%; /* Ensures the link fills the button vertically */
+    width: 100%; /* Ensures the link fills the button horizontally */
+}
+
+/* Additional styles can be added below for other elements */
