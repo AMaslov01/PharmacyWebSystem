@@ -1,0 +1,286 @@
+/*
+    NAME:           ABDULLAH JOBBEH
+    DESCRIPTION:    CSS FILE FOR AMENDING A CUSTOMER ON A DATABASE
+    DATE:           1/4/2024
+    STUDENTID:      C00284285
+*/
+/* Sets up the basic styles for the entire body of the page */
+body {
+    font-family: "JetBrains Mono"; /* Defines the font family used throughout the page */
+    background-color: #727272; /* Sets the background color */
+    height: 1200px; /* Sets a fixed height for the body */
+    padding: 0; /* Removes any padding */
+    margin: 0; /* Removes any margin */
+}
+
+/* Styles for individual links within the navigation */
+.link {
+    position: absolute; /* Position the link absolutely within its relative parent */
+    width: fit-content; /* Ensures the width is only as wide as the content */
+    height: 40px; /* Sets a specific height for each link */
+}
+
+/* Styles the header, which contains navigation and branding */
+.header {
+    z-index: 1; /* Ensures the header stays on top of other content */
+    padding: 0; /* No padding to ensure items inside the header touch the edges */
+    margin: 0; /* No margin to ensure the header touches the edges of the page */
+    position: fixed; /* Fixes the header to the top of the viewport */
+    width: 100%; /* Header spans the full width of the viewport */
+    height: 150px; /* Sets the height of the header */
+    background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%); /* A gradient background from gray to green */
+}
+
+/* Styles the logo within the header */
+.logo {
+    user-select: none; /* Disables text selection of the logo */
+    position: absolute; /* Positions the logo absolutely within the header */
+    top: 5px; /* Distance from the top of the header */
+    left: 10px; /* Distance from the left side of the header */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* Enlarges the logo on hover */
+    transition-duration: .5s; /* Smooth transition for the transform effect */
+}
+
+.logo:not(:hover) {
+    transform: scale(1); /* Ensures the logo returns to normal size when not hovered */
+    transition-duration: .5s; /* Smooth transition for the transform effect */
+}
+
+/* Styles the logout button */
+.logout {
+    user-select: none; /* Disables text selection of the logout button */
+    position: absolute; /* Positions the logout button absolutely within the header */
+    top: -10px; /* Positions the button slightly above the top of its container */
+    right: 0; /* Aligns the button to the right */
+}
+
+.logout:hover {
+    transform: scale(1.1); /* Enlarges the logout button on hover */
+    transition-duration: .5s; /* Duration of the hover effect transition */
+}
+
+.logout:not(:hover) {
+    transform: scale(1); /* Returns the button to its original size when not hovered */
+    transition-duration: .5s; /* Duration of the transition back to normal size */
+}
+
+/* Styles for the navigation links that appear when the menu is activated */
+.links {
+    display: none; /* Hides the links by default */
+    position: absolute; /* Positions the links absolutely within their container */
+    width: 1200px; /* Sets a specific width for the container */
+    height: 90px; /* Sets a specific height for the container */
+    left: 420px; /* Positions the container horizontally */
+    top: 15px; /* Positions the container vertically from the top */
+}
+
+/* General styles for menu text */
+.menu {
+    user-select: none; /* Disables text selection for the menu items */
+    position: fixed; /* Fixes the position of the menu text */
+    margin: 0; /* Removes any margin around the menu text */
+    color: white; /* Sets the text color to white */
+    font-size: 64px; /* Sets a large font size for visibility */
+    font-weight: 800; /* Boldens the font */
+}
+
+.menu:hover {
+    transform: scale(1.05); /* Slightly enlarges the menu text on hover */
+    transition-duration: .5s; /* Smooth transition for the hover effect */
+}
+
+.menu:not(:hover) {
+    transform: scale(1); /* Returns the text to its original scale when not hovered */
+    transition-duration: .5s; /* Ensures the transition back is smooth */
+}
+
+/* Styles for the menu button */
+.menu_button {
+    position: absolute; /* Absolute positioning within its container */
+    width: 170px; /* Width of the button */
+    height: 80px; /* Height of the button */
+    left: 170px; /* Position from the left */
+    top: 18px; /* Position from the top */
+    transition-duration: .5s; /* Smooth transition for any animations */
+}
+
+/* Anchor tag enhancements */
+a {
+    user-select: none; /* Disables text selection for links */
+    text-decoration: none; /* Removes underline from links */
+}
+
+a:hover {
+    font-weight: 800; /* Boldens the link text on hover */
+}
+
+/* Styles specific to the page identifier */
+.page {
+    user-select: none; /* Disables text selection for the page title */
+    color: white; /* White color for visibility against the background */
+    font-size: 64px; /* Large font size for clear visibility */
+    font-weight: 600; /* Slightly less bold than the menu text */
+    margin: 0; /* Removes any margin around the text */
+}
+
+/* Styles for the page name label */
+.page_name {
+    position:absolute; /* Absolute positioning */
+    top: 18px; /* Vertical position */
+    left: 575px; /* Horizontal position */
+}
+
+/* Styling for each line within a form */
+.form_line {
+    display: flex; /* Uses flexbox for layout */
+    flex-direction: row; /* Arranges children in a row */
+    align-items: center; /* Vertically centers the items */
+    justify-content: space-between; /* Distributes space between and around content items */
+}
+
+/* General form styling */
+form {
+    position: relative; /* Allows for positioning relative to its normal position */
+    margin: auto; /* Centers the form horizontally */
+    height: 600px; /* Sets a specific height */
+    top: 200px; /* Pushes the form down from the top */
+    color: white; /* White text color for visibility */
+    width: 70%; /* Sets the form width relative to its parent */
+    user-select: none; /* Disables text selection within the form */
+}
+
+/* Styling for labels within the form */
+label {
+    font-size: 36px; /* Large font size for labels */
+    font-weight: 600; /* Bold font weight for clear legibility */
+}
+
+/* Styling for input fields and the select box */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="tel"],
+select {
+    font-family: "JetBrains Mono"; /* Consistent font family for input fields */
+    color: white; /* Text color */
+    font-size: 24px; /* Appropriate font size for form inputs */
+    font-weight: 400; /* Normal font weight */
+    background-color: rgb(0,146,69); /* Green background color */
+    width: 800px; /* Consistent width for all input fields */
+    height: 30px; /* Height of the input fields */
+    padding: 10px; /* Padding inside the input fields for text alignment */
+    margin: 12px 0; /* Vertical spacing for form elements */
+    border: 3px white solid; /* White border for visibility and aesthetics */
+    border-radius: 8px; /* Rounded corners for the input fields and select box */
+}
+
+/* Styling for button elements within the form */
+input[type="button"] {
+    font-family: "JetBrains Mono"; /* Consistent font across all text elements */
+    color: white; /* White text for visibility */
+    font-size: 36px; /* Larger font size for button text */
+    font-weight: 600; /* Bold font weight for text clarity */
+    border: 3px white solid; /* White border matching other form elements */
+    border-radius: 8px; /* Rounded corners for aesthetic consistency */
+    background-color: #727272; /* Grey background differentiating the button */
+    margin-bottom: 30px; /* Bottom margin for spacing */
+    margin-top: 10px; /* Top margin for spacing */
+    transition-duration: .1s; /* Quick transition for interactive elements */
+    width: 155px; /* Fixed width for consistency */
+    height: 75px; /* Fixed height for visual uniformity */
+    text-align: center; /* Centers text within the button */
+}
+
+input[type="button"]:hover {
+    font-weight: 800; /* Boldens the text on hover for emphasis */
+    font-size: 40px; /* Increases the font size on hover for visibility */
+    border: 5px white solid; /* Thicker border on hover for visual impact */
+    transition-duration: .1s; /* Maintains a quick transition on hover */
+}
+
+/* Styling for select elements specifically */
+select {
+    width: 825px; /* Slightly wider than input fields to accommodate dropdown icon */
+    height: 56px; /* Taller height to accommodate larger text and padding */
+}
+
+/* Placeholder styling within input fields */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5); /* Lighter white for placeholder text to differentiate from input text */
+}
+
+/* Styling for input fields when they contain valid data */
+input:valid {
+    background-color: #727272; /* Darker background for valid input to visually communicate correctness */
+}
+
+/* Styling for the submit button specifically */
+input[type="submit"] {
+    font-family: "JetBrains Mono"; /* Consistent font family */
+    color: white; /* Text color for readability */
+    font-size: 24px; /* Suitable font size for button text */
+    font-weight: 400; /* Normal font weight for readability */
+    margin-top: 50px; /* Spacing from the previous elements */
+    width: 200px; /* Consistent width with other form controls */
+    height: 50px; /* Height sufficient to tap easily on mobile devices */
+    border-radius: 8px; /* Rounded corners for aesthetic consistency */
+    border: 3px white solid; /* Solid white border for visibility */
+    cursor: pointer; /* Cursor changes to pointer to indicate it's clickable */
+    background-color: rgb(0,146,69); /* Green background to signify actionable items */
+    transition-duration: .1s; /* Quick transition to respond swiftly to user interactions */
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+    opacity: 0.9; /* Slightly reduces opacity on hover for visual feedback */
+    font-size: 28px; /* Slightly larger font size on hover for emphasis */
+    transition-duration: .1s; /* Ensures the hover effect is noticeable but not jarring */
+}
+
+/* Styling for the reset button */
+input[type="reset"] {
+    background-color: #727272; /* Grey background to make it less prominent than the submit button */
+}
+
+/* Styling for the 'amended' message section */
+.amended {
+    display: none; /* Hidden by default */
+    font-size: 36px; /* Large font size for visibility */
+    font-weight: 600; /* Bold to capture attention */
+}
+
+/* Styling for the 'OK' text within a button */
+.okText {
+    all: none; /* Resets all inherited properties */
+    color: white; /* White color for readability */
+    padding-top: 20px; /* Top padding to vertically center text within the button */
+    line-height: 50px; /* Line height to ensure text is aligned within the button */
+}
+
+.okText:hover {
+    font-weight: 400; /* Lighter font weight on hover for a subtle interaction cue */
+}
+
+/* Styling for the 'OK' button itself */
+.okButton {
+    position: absolute; /* Positioned absolutely relative to its nearest positioned ancestor */
+    left: 45%; /* Horizontally centers the button at 45% from the left */
+    font-size: 24px; /* Font size that balances readability with aesthetic */
+    font-weight: 400; /* Normal font weight for standard text */
+    margin-top: -20px; /* Negative top margin to pull the button upwards */
+    width: 195px; /* Width of the button for sufficient click/tap area */
+    height: 45px; /* Height of the button for aesthetic and functional balance */
+    border-radius: 8px; /* Rounded corners for a modern, friendly appearance */
+    border: 3px white solid; /* Solid white border to define the button's boundaries */
+    cursor: pointer; /* Changes the cursor to a pointer to indicate it's clickable */
+    background-color: rgb(0,146,69); /* Green background to make it stand out as a positive action button */
+    transition-duration: .1s; /* Short transition duration for tactile feedback */
+}
+
+.okButton:hover {
+    opacity: 0.9; /* Slightly reduces opacity on hover for a subtle interaction effect */
+    font-size: 28px; /* Increases font size on hover for emphasis */
+    transition-duration: .1s; /* Maintains a quick response to hover interactions */
+}
