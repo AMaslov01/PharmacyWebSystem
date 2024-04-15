@@ -1,3 +1,10 @@
+
+// Author			: Nebojsa Kukic
+// Date				: 04/2024
+// Purpose			: A payment to suppliers form
+//					: This is the js	
+
+
 document.getElementById('menu_button').addEventListener('click', function() {
     var links = document.querySelector('.links');
     var menu_button = document.querySelector('.menu_button');

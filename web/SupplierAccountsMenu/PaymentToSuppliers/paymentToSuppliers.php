@@ -1,3 +1,10 @@
+<!--
+// Author			: Nebojsa Kukic
+// Date				: 04/2024
+// Purpose			: A payment to suppliers form
+//					: This is the php and html	
+->
+
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
