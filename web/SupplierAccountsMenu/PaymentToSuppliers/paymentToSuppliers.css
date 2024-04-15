@@ -1,0 +1,269 @@
+
+/* CSS styles for the body element */
+body {
+    font-family: "JetBrains Mono";
+    background-color: #727272;
+    height: 1050px;
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles for links */
+.link {
+    position: absolute;
+    width: fit-content;
+    height: 40px;
+}
+
+/* Styles for header */
+.header {
+    z-index: 1;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    width: 100%;
+    height: 150px;
+    background: rgb(114,114,114);
+    background: linear-gradient(0deg, rgba(114,114,114,1) 0%, rgba(0,146,69,1) 25%);
+}
+
+/* Styles for logo */
+.logo {
+    user-select: none;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+}
+
+/* Styles for logo hover */
+.logo:hover {
+    transform: scale(1.05);
+    transition-duration: .1s;
+}
+
+/* Styles for logo not hover */
+.logo:not(:hover) {
+    transform: scale(1);
+    transition-duration: .9s;
+}
+
+/* Styles for logout */
+.logout {
+    user-select: none;
+    position: absolute;
+    top: -10px;
+    right: 0;
+}
+
+/* Styles for logout hover */
+.logout:hover {
+    transform: scale(1.1);
+    transition-duration: .1s;
+}
+
+/* Styles for logout not hover */
+.logout:not(:hover) {
+    transform: scale(1);
+    transition-duration: .9s;
+}
+
+/* Styles for links */
+.links {
+    display: none;
+    position: absolute;
+    width: 1200px;
+    height: 90px;
+    left: 420px;
+    top: 15px;
+}
+
+/* Styles for menu */
+.menu {
+    user-select: none;
+    position: fixed;
+    margin: 0;
+    color: white;
+    font-size: 64px;
+    font-weight: 800;
+}
+
+/* Styles for menu hover */
+.menu:hover {
+    transform: scale(1.05);
+    transition-duration: .5s;
+}
+
+/* Styles for menu not hover */
+.menu:not(:hover){
+    transform: scale(1);
+    transition-duration: .5s;
+}
+
+/* Styles for menu button */
+.menu_button {
+    position: absolute;
+    width: 170px;
+    height: 80px;
+    left: 170px;
+    top: 18px;
+    transition-duration: .5s;
+}
+
+/* Styles for links */
+a {
+    user-select: none;
+    text-decoration: none;
+    transition-duration: .1s;
+}
+
+/* Styles for links hover */
+a:hover {
+    font-weight: 800;
+    transition-duration: .1s;
+}
+
+/* Styles for page */
+.page {
+    user-select: none;
+    color: white;
+    font-size: 64px;
+    font-weight: 600;
+    margin: 0;
+}
+
+/* Styles for page name */
+.page_name {
+    position: absolute;
+    top: 18px;
+    left: 575px;
+}
+
+/* Styles for action */
+.action {
+    position: absolute;
+    width: fit-content;
+    height: 40px;
+}
+
+/* Styles for action text */
+.action_text {
+    user-select: none;
+    margin: 0;
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+/* Styles for label */
+label {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+/* Styles for form line */
+.form_line {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Styles for form */
+form {
+    position: relative;
+    margin: auto;
+    height: 600px;
+    top: 200px;
+    color: white;
+    width: 70%;
+}
+
+/* Styles for input fields */
+input[type="text"],
+input[type="number"],
+select {
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+    background-color: rgb(0,146,69);
+    width: 800px;
+    height: 30px;
+    padding: 10px;
+    margin: 12px 0;
+    border: 3px white solid;
+    border-radius: 8px;
+}
+
+/* Styles for select element */
+select {
+    width: 825px;
+    height: 56px;
+}
+
+/* Styles for input placeholder */
+input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Styles for valid input */
+input:valid {
+    background-color: #727272;
+}
+
+/* Styles for submit and reset buttons */
+input[type="submit"], input[type="reset"] {
+    font-family: "JetBrains Mono";
+    color: white;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: 50px;
+    width: 300px;
+    height: 50px;
+    border-radius: 8px;
+    border: 3px white solid;
+    cursor: pointer;
+    background-color: rgb(0,146,69);
+    transition-duration: .5s;
+}
+
+/* Styles for reset button */
+input[type="reset"] {
+    background-color: #727272;
+}
+
+/* Styles for submit and reset buttons hover */
+input[type="submit"]:hover, input[type="reset"]:hover {
+    opacity: 0.9;
+    font-size: 28px;
+    transition-duration: .5s;
+}
+
+/* Styles for added message */
+.added {
+    display: none;
+}
+
+/* Styles for OK button */
+.okButton {
+    position: absolute;
+    left: 45%;
+    font-size: 24px;
+    font-weight: 400;
+    margin-top: -20px;
+    width: 195px;
+    height: 45px;
+    border-radius: 8px;
+    border: 3px white solid;
+    cursor: pointer;
+    background-color: rgb(0,146,69);
+    transition-duration: .1s;
+    text-align: center;
+}
+
+/* Styles for OK button hover */
+.okButton:hover {
+    opacity: 0.9;
+    font-size: 28px;
+    transition-duration: .1s;
+}
